@@ -1,4 +1,4 @@
-package change.it;
+package it.univaq;
 
 public class Runner {
 
@@ -11,4 +11,3 @@ public class Runner {
 		return x + y;
 	}
 }
-tanta fatica

@@ -1,11 +1,10 @@
-package change.it.test;
+package it.univaq.test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import change.it.Runner;
+import it.univaq.Runner;
 
 class RunnerTest {
 	
