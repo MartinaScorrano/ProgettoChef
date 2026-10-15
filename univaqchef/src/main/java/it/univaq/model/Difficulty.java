@@ -1,5 +1,11 @@
 package it.univaq.model;
-
-public class Difficulty {
+/**
+ * Classe enumerativa Difficulty utilizzata per i livelli di difficoltà associati ad una ricetta;
+ * 
+ */
+public enum Difficulty {
+    EASY,
+    MEDIUM,
+    HARD;
     
 }
