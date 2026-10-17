@@ -36,7 +36,67 @@ public BaseRecipe(String title,String description,List<IngredientRecipe> list,in
     this.category=category;
     this.steps=steps;
 }
-
-
-
+/**
+ * Metodo getter per il titolo
+ * @return il titolo della ricetta
+ */
+public String getTitle(){
+return title;
+}
+/**
+ * Metodo getter per la descrizione
+ * @return la descrizione della ricetta
+ */
+public String getDescription(){
+    return description;
+}
+/**
+ * Metodo getter per la lista degli ingredienti
+ * @return la lista degli ingredienti
+ */
+public List<IngredientRecipe> getListIngredients(){
+    return list;
+}
+/** 
+ * Metodo getter per il tempo necessario per la preparazione
+ * @return il tempo necessario per la preparazione
+ */
+public int getTimePreparation(){
+    return timePreparation;
+}
+/**
+ * Metodo getter per il tempo necessario alla cottura
+ * @return il tempo necessario alla cottura
+ */
+public int getTimeToBeCooked(){
+    return timeToBeCooked;
+}
+/**
+ * Metodo setter per il titolo della ricetta
+ * @param titolo per il titolo della ricetta
+ */
+public void setTitle(String titolo){
+    this.title=titolo;
+}
+/**
+ * Metodo setter per la descrizione della ricetta
+ * @param descrizione la descrizione della ricetta
+ */
+public void setDescription(String descrizione){
+    this.description=descrizione;
+}
+/**
+ * Metodo setter per il tempo necessario alla preparazione della ricetta
+ * @param tempoPreparazione il tempo necessario alla preparazione
+ */
+public void setTimePreparation(int tempoPreparazione){
+    this.timePreparation=tempoPreparazione;
+}
+/**
+ * Metodo setter per il tempo necessario alla cottura del cibo
+ *@param tempoCottura il tempo necessario alla cottura 
+ */
+public void setTimeToBeCooked(int tempoCottura){
+    this.timeToBeCooked=tempoCottura;
+}
 }
