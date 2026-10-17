@@ -25,6 +25,20 @@ public QuickRecipe(String title,String description,List<IngredientRecipe> list,i
     super(title,description,list,timePreparation,timeToBeCooked,numberPortions,valutation,difficulty,category,steps);
     this.rangePreparationTime=rangePreparationTime;
 }
+/**
+ * Metodo getter per il range temporale
+ * @return il range temporale impostato dall'utente
+ */
+public int getRangePreparationTime(){
+    return this.rangePreparationTime;
+}
+/**
+ * Metodo setter per il range temporale
+ * @param range il range temporale impostato dall'utente
+ */
+public void setRangePreparationTime(int range){
+    this.rangePreparationTime=range;
+}
 
     
 }
