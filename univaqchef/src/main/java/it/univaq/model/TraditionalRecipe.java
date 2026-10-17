@@ -33,6 +33,49 @@ public TraditionalRecipe(String title,String description,List<IngredientRecipe> 
     this.suggestedWine=suggestedWine;
 
 }
+/**
+ * Metodo getter per la regione d'origine
+ * @return la regione d'origine
+ */
+public Region getOriginRegion(){
+    return originRegion;
+}
+/**
+ * Metodo getter per le nozioni storiche
+ * @return le nozioni storiche
+ */
+public String getHistoryNotes(){
+    return historyNotes;
+}
+/**
+ * Metodo getter per il vino di accompagnamento suggerito
+ * @return il vino suggerito
+ */
+public String getSuggestedWine(){
+    return suggestedWine;
+}
+/**
+ * Metodo setter per la regione d'origine
+ * @param regioneOrigine la regione d'origine del piatto
+ */
+public void setOriginRegion(Region regioneOrigine){
+    this.originRegion=regioneOrigine;
+}
+/**
+ * Metodo setter per le nozioni storiche
+ * @param nozioniStoriche le nozioni storiche sul piatto tradizionale
+ */
+public void setHistoryNotes(String nozioniStoriche){
+    this.historyNotes=nozioniStoriche;
+}
+/**
+ * Metodo setter per il vino suggerito
+ * @param vino il vino di accompagnamento suggerito
+ */
+public void setSuggestedWine(String vino){
+    this.suggestedWine=vino;
+}
+
 
 
     
