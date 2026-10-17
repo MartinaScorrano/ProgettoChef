@@ -99,4 +99,15 @@ public void setTimePreparation(int tempoPreparazione){
 public void setTimeToBeCooked(int tempoCottura){
     this.timeToBeCooked=tempoCottura;
 }
+/**
+ * Metodo che restituisce il conteggio totale della calorie per la ricetta scelta
+ * @return il numero totale di calorie espresso in kcal.
+ */
+public String getTotalCalories(){
+    int count=0;
+    for(IngredientRecipe ingredient:list){
+        count+=ingredient.getCalories();
+}
+System.out.println("Questa ricetta contiene un totale di "+count+" kcal");
+}
 }
