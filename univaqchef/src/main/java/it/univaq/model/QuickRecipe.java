@@ -1,5 +1,8 @@
 package it.univaq.model;
+import java.util.ArrayList;
 import java.util.List;
+
+import it.univaq.exceptions.ElementNotFoundException;
 /**
  * Classe QuickRecipe utilizzata per ricette veloci da poter preparare in un certo range temporale apportando eventualmente dei cambiamenti sui passi di preparazione oppure sugli ingredienti necessari
  * 
@@ -39,6 +42,25 @@ public int getRangePreparationTime(){
 public void setRangePreparationTime(int range){
     this.rangePreparationTime=range;
 }
+/**
+ * Metodo che restituisce l'elenco dei titolo delle ricette che hanno un tempo di preparazione <= a quello specificato in input
+ * @param range il tempo di preparazione impostato dall'utente
+ * @return la lista delle ricette
+ */
+public ArrayList<String> searchRecipeInRange(int range) throws ElementNotFoundException {
+ ArrayList<String> lista=new ArrayList<>();
+ List<BaseRecipe> ricettario=new ArrayList<>();
+ for(BaseRecipe recipe:ricettario){
+    if(recipe.getTimePreparation()<=range){
+        lista.add(recipe.getTitle());
+    }
+ }
+if(lista.isEmpty()){
+    throw new ElementNotFoundException();
 
-    
 }
+return lista;
+}
+}
+    
+
