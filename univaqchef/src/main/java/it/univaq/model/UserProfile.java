@@ -28,4 +28,68 @@ public UserProfile(String name,String surname,List<Allergy> allergies,List<TypeD
     this.numberOfPeople=numberOfPeople;
     this.sweetTreats=sweetTreats;
 }
+/**
+ * Metodo getter per il nome dell'utente
+ * @return il nome dell'utente
+ */
+public String getName(){
+    return name;
+}
+/**
+ * Metodo getter per il cognome dell'utente
+ * @return il cognome dell'utente
+ */
+public String getSurname(){
+    return surname;
+}
+/**
+ * Metodo getter per le allergie
+ * @return la lista delle allergie dell'utente
+ */
+public List<Allergy> getAllergies(){
+    return allergies;
+}
+/**
+ * Metodo getter per i tipi di dieta seguite dall'utente
+ * @return il tipo di diete seguite dall'utente
+ */
+public List<TypeDiet> getTypeDiet(){
+    return typeDiet;
+}
+/**
+ * Metodo getter per gli sweet treats dell'utente
+ * @return la lista degli sweet treats
+ */
+public List<Ingredient> getSweetTreats(){
+    return sweetTreats;
+}
+/**
+ * Metodo getter per il numero di persone
+ * @return il numero di persone del nucleo familiare dell'utente
+ */
+public int getNumberOfPeople(){
+    return numberOfPeople;
+}
+/**
+ * Metodo setter per il nome dell'utente
+ * @param nome il nome dell'utente
+ */
+public void setName(String nome){
+    this.name=nome;
+}
+/**
+ * Metoo setter per il cognome dell'utente
+ * @param cognome il cognome dell'utente
+ */
+public void setSurname(String cognome){
+    this.surname=cognome;
+}
+/**
+ * Metodo setter per il numero di persone
+ * @param numero il numero di persone che compongono il nucleo familiare dell'utente
+ */
+public void setNumberOfPeople(int numero){
+    this.numberOfPeople=numero;
+}
+
 }
