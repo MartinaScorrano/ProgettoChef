@@ -1,7 +1,6 @@
 package it.univaq.business;
 import it.univaq.model.Recipe;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
 import java.io.File;
 import java.io.IOException;
 
@@ -14,6 +13,7 @@ public RecipeService(){
     public boolean salva(Recipe recipe){
         if(recipe==null){
             log("Errore:impossibile salvare una ricetta ineistente");
+            return false;
         }
         log("Salvataggio in corso della ricetta "+recipe.getTitle());
         String nomeFile = recipe.getTitle().toLowerCase().replaceAll("\\s+", "_") + ".json";
