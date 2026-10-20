@@ -9,6 +9,10 @@ import it.univaq.model.Recipe;
 
 public class IngredientService extends DataModelSalvabile<Ingredient>{
     private final ObjectMapper objectMapper;
+/**
+ * Metodo costruttore della classe IngredientService
+ * @return una nuova istanza di IngredientService
+ */
 public IngredientService(){
     this.objectMapper=new ObjectMapper();
 }

@@ -6,13 +6,17 @@ import java.io.IOException;
 
 public class RecipeService extends DataModelSalvabile<Recipe>{
     private final ObjectMapper objectMapper;
-public RecipeService(){
+/**
+ * Metodo costruttore della classe RecipeService
+ * @return una nuova istanza di RecipeService
+ */
+    public RecipeService(){
     this.objectMapper=new ObjectMapper();
 }
     @Override 
     public boolean salva(Recipe recipe){
         if(recipe==null){
-            log("Errore:impossibile salvare una ricetta ineistente");
+            log("Errore:impossibile salvare una ricetta inesistente");
             return false;
         }
         log("Salvataggio in corso della ricetta "+recipe.getTitle());
