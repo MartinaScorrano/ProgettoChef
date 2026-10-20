@@ -3,8 +3,6 @@ import java.io.File;
 import java.io.IOException;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-
-import it.univaq.model.Recipe;
 import it.univaq.model.UserProfile;
 
 public class UserProfileService extends DataModelSalvabile<UserProfile>{
@@ -18,8 +16,8 @@ public UserProfileService(){
             log("Errore:impossibile salvare un profilo utente inesistente");
             return false;
         }
-        log("Salvataggio in corso del profilo utente "+userProfile.getTitle());
-        String nomeFile = userProfile.getTitle().toLowerCase().replaceAll("\\s+", "_") + ".json";
+        log("Salvataggio in corso del profilo utente di "+userProfile.getName());
+        String nomeFile = userProfile.getName().toLowerCase().replaceAll("\\s+", "_") + ".json";
         File fileOutput = new File(nomeFile);
         try {
             // Scrittura dell'oggetto Java su file JSON tramite Jackson

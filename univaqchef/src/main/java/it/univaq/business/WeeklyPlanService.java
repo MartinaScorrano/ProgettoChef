@@ -4,7 +4,6 @@ import java.io.IOException;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import it.univaq.model.Recipe;
 import it.univaq.model.WeeklyPlan;
 
 public class WeeklyPlanService extends DataModelSalvabile<WeeklyPlan>{
@@ -18,8 +17,8 @@ public WeeklyPlanService(){
             log("Errore:impossibile salvare un piano settimanale inesistente");
             return false;
         }
-        log("Salvataggio in corso del piano settimanale "+weeklyPlan.getTitle());
-        String nomeFile = weeklyPlan.getTitle().toLowerCase().replaceAll("\\s+", "_") + ".json";
+        log("Salvataggio in corso del piano settimanale "+weeklyPlan.getStartDate());
+        String nomeFile = weeklyPlan.getStartDate().toLowerCase().replaceAll("\\s+", "_") + ".json";
         File fileOutput = new File(nomeFile);
         try {
             // Scrittura dell'oggetto Java su file JSON tramite Jackson

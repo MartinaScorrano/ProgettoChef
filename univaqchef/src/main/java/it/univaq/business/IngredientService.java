@@ -5,7 +5,6 @@ import java.io.IOException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import it.univaq.model.Ingredient;
-import it.univaq.model.Recipe;
 
 public class IngredientService extends DataModelSalvabile<Ingredient>{
     private final ObjectMapper objectMapper;
