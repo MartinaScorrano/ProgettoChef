@@ -3,6 +3,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -32,6 +34,11 @@ public boolean salva(List<BaseRecipe> ricettario){
         }
 
 }
+public List<BaseRecipe> filter(Predicate<BaseRecipe> predicate) {
+        return ricettario.stream()
+                      .filter(predicate)
+                      .collect(Collectors.toList());
+    }
 
 
     

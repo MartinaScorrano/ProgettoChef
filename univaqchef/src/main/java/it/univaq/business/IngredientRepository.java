@@ -3,10 +3,13 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.function.Predicate;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import it.univaq.model.Ingredient;
+import it.univaq.model.Recipe;
 
 public class IngredientRepository extends DataModelSalvabile<List<Ingredient>>{
     private final ObjectMapper objectMapper=new ObjectMapper();
@@ -33,5 +36,10 @@ public boolean salva(List<Ingredient> ingredienti){
 
 
 }
+public List<Recipe> filter(Predicate<Recipe> predicate) {
+        return ingredienti.stream()
+                      .filter(predicate)
+                      .collect(Collectors.toList());
+    }
     
 }
