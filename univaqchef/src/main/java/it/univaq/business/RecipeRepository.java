@@ -9,7 +9,9 @@ import java.util.stream.Collectors;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import it.univaq.model.BaseRecipe;
-
+/**
+ * Classe RecipeRepository utilizzata per salvare tutte le ricette create
+ */
 public class RecipeRepository extends DataModelSalvabile<List<BaseRecipe>>{
     private final ObjectMapper objectMapper=new ObjectMapper();
     private final List<BaseRecipe> ricettario=new ArrayList<>();
@@ -41,6 +43,13 @@ public boolean salva(List<BaseRecipe> ricettario){
  */
 public List<BaseRecipe> filterRecipe(Predicate<BaseRecipe> criterio){
     return ricettario.stream().filter(criterio).collect(Collectors.toList());
+}
+/**
+ * Metodo getter per l'intera lista delle ricette
+ * @return l'intera lista delle ricette
+ */
+public List<BaseRecipe> getAllRecipe(){
+    return ricettario;
 }
 
 

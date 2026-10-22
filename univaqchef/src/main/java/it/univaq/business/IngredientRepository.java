@@ -9,7 +9,9 @@ import java.util.stream.Collectors;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import it.univaq.model.Ingredient;
-
+/**
+ * Classe IngredientRepository utilizzata per salvare tutti gli ingredienti presenti
+ */
 public class IngredientRepository extends DataModelSalvabile<List<Ingredient>> {
     private final ObjectMapper objectMapper=new ObjectMapper();
     private final List<Ingredient> ingredienti=new ArrayList<>();
@@ -34,6 +36,13 @@ public boolean salva(List<Ingredient> ingredienti){
         }
 
 
+}
+/**
+ * Metodo getter per l'intera lista degli ingredienti
+ * @return la lista degli ingredienti creati
+ */
+public List<Ingredient> getAllIngredient(){
+    return ingredienti;
 }
 /**
  * Metodo per il filtraggio della repo di Ingredient

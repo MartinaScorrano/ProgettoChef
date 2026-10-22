@@ -1,6 +1,5 @@
 package it.univaq.business;
 import java.util.List;
-import java.util.function.Predicate;
 
 import it.univaq.model.BaseRecipe;
 
@@ -19,14 +18,12 @@ public RecipeService(RecipeRepository repository){
     
 }
 /**
- * Metodo utilizzato per il filtraggio delle ricette in base a degli specifici criteri
- * @param criterio il criterio per la ricetta di una specifica ricetta
- * @return l'elenco filtrato delle ricette che soddisfano il criterio specificato
+ * Metodo getter la l'intera lista delle ricette
  */
-public List<BaseRecipe> filtraRicette(Predicate<BaseRecipe> criterio){
-    return repository.filter(criterio);
-
+public List<BaseRecipe> getAll(){
+    return repository.getAllRecipe();
 }
+
 
 
 

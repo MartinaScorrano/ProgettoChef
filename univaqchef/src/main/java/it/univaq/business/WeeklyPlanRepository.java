@@ -5,12 +5,12 @@ import java.io.IOException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import it.univaq.model.WeeklyPlan;
-
+/**
+ * Classe WeeklyPlanRepository utilizzata per salvare tutti i piani settimanali creati
+ */
 public class WeeklyPlanRepository extends DataModelSalvabile<WeeklyPlan>{
-    private final ObjectMapper objectMapper;
-public WeeklyPlanRepository(){
-    this.objectMapper=new ObjectMapper();
-}
+    private final ObjectMapper objectMapper=new ObjectMapper();
+
     @Override 
     public boolean salva(WeeklyPlan weeklyPlan){
         if(weeklyPlan==null){
