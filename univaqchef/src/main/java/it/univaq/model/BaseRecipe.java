@@ -39,7 +39,14 @@ public BaseRecipe(String title,String description,List<IngredientRecipe> list,in
 @Override 
 public String toString(){
     return "La ricetta: "+getTitle()+" ha la seguente descrizione: "+getDescription()+".Gli ingredienti necessari alla preparazione sono: "+getListIngredients()+
-    ". Per la preparazione di questa ricetta saranno necessari "+getTimePreparation()+ " minuti e "+getTimeToBeCooked()+" minuti per la cottura. Questa ricetta è ottima per "+getNumberPortions()+" persone.Ha una valutazione di "+getValutation()+" stelle su 5. Ha una difficoltà "+getDifficulty()+".Il piatto appartiene alla categoria"
+    ". Per la preparazione di questa ricetta saranno necessari "+getTimePreparation()+ " minuti e "+getTimeToBeCooked()+" minuti per la cottura. Questa ricetta è ottima per "+getNumberPortions()+" persone.Ha una valutazione di "+getValutation()+" stelle su 5. Ha una difficoltà "+getDifficulty()+".Il piatto appartiene alla categoria "+ getCategory();
+}
+@Override 
+public boolean equals(Object obj){
+    if(this==obj) return true;
+    if(!(obj instanceof BaseRecipe)) return false;
+    BaseRecipe ricetta=(BaseRecipe) obj;
+    return this.getTitle().equals(ricetta.getTitle())&&this.getDescription().equals(ricetta.getDescription());
 }
 /**
  * Metodo getter per il titolo
@@ -76,6 +83,35 @@ public int getTimePreparation(){
 public int getTimeToBeCooked(){
     return timeToBeCooked;
 }
+/**
+ * Metodo getter per il numero di porzioni
+ * @return il numero di porzioni della ricetta
+ */
+public int getNumeroPorzioni(){
+    return numberPortions;
+}
+/**
+ * Metodo getter per la valutazione della ricetta
+ * @return la valutazione della ricetta
+ */
+public int getValutation(){
+    return valutation;
+}
+/**
+ * Metodo getter per la difficoltà della ricetta
+ * @return la difficoltà della ricetta
+ */
+public Difficulty getDifficulty(){
+    return difficulty;
+}
+/**
+ * Metodo getter per la categoria della ricetta
+ * @return la categoria della ricetta
+ */
+public PlateCategory getCategory(){
+    return category;
+}
+
 /**
  * Metodo setter per il titolo della ricetta
  * @param titolo per il titolo della ricetta
