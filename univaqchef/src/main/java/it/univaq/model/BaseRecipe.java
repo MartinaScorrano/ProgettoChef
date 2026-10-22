@@ -87,7 +87,7 @@ public int getTimeToBeCooked(){
  * Metodo getter per il numero di porzioni
  * @return il numero di porzioni della ricetta
  */
-public int getNumeroPorzioni(){
+public int getNumberPortions(){
     return numberPortions;
 }
 /**

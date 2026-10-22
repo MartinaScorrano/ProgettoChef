@@ -3,15 +3,14 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import it.univaq.model.Ingredient;
-import it.univaq.model.Recipe;
 
-public class IngredientRepository extends DataModelSalvabile<List<Ingredient>>{
+public class IngredientRepository extends DataModelSalvabile<List<Ingredient>> {
     private final ObjectMapper objectMapper=new ObjectMapper();
     private final List<Ingredient> ingredienti=new ArrayList<>();
 @Override 
@@ -36,10 +35,13 @@ public boolean salva(List<Ingredient> ingredienti){
 
 
 }
-public List<Recipe> filter(Predicate<Recipe> predicate) {
-        return ingredienti.stream()
-                      .filter(predicate)
-                      .collect(Collectors.toList());
-    }
-    
+/**
+ * Metodo per il filtraggio della repo di Ingredient
+ * @param criterio il criterio di filtraggio
+ * @return la lista degli ingredienti che hanno superato il criterio del Predicate
+ */
+public List<Ingredient> filterIngredient(Predicate<Ingredient> criterio){
+    return ingredienti.stream().filter(criterio).collect(Collectors.toList());
+}
+  
 }
