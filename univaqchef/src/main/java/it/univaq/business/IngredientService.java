@@ -27,6 +27,7 @@ public List<Ingredient> getAll(){
 
 /**
  * Metodo per l'eliminazione di un ingrediente dall lista degli ingredienti
+ * @param ingrediente l'ingrediente da eliminare
  */
   public void delete(Ingredient ingrediente){
     try{ingredientRepo.deleteIngredient(ingrediente);
@@ -37,5 +38,12 @@ public List<Ingredient> getAll(){
 
   } 
     
+}
+/**
+ * Metodo per l'aggiunta di un ingrediente all'archivio
+ * @param ingrediente l'ingrediente da aggiungere
+ */
+public void add(Ingredient ingrediente){
+    ingredientRepo.addIngredient(ingrediente);
 }
 }

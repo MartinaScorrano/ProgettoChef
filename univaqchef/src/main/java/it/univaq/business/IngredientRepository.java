@@ -53,15 +53,27 @@ public List<Ingredient> filterIngredient(Predicate<Ingredient> criterio){
 }
 /**
  * Metodo per eliminare un ingrediente dalla relativa lista
+ * @param ingredienteDaEliminare l'ingrediente da eliminare dall'archivio
  * @return true se l'elemento è stato trovato e l'eliminazione è andata a buon fine,false altrimenti
  * @throws ElementNotFoundException se l'ingrediente da eliminare non è presente nell'archivio
  */
 public boolean deleteIngredient(Ingredient ingredienteDaEliminare) throws ElementNotFoundException{
-    for(Ingredient ingrediente:ingredienti){
-        if(ingrediente.equals(ingredienteDaEliminare)){
-            ingredienti.remove(ingrediente);
-            return true;
-        }
+    if(ingredienti.contains(ingredienteDaEliminare)){
+        ingredienti.remove(ingredienteDaEliminare);
+        return true;
+
+    }
+    return false;
+}
+/**
+ * Metodo per l'aggiunta di un ingrediente se non già presente nell'archivio
+ * @param ingredienteDaAggiungere l'ingrediente da aggiungere dall'archivio
+ * @return true se l'elemento da aggiungere non era già presente e l'aggiunta è andata a buon fine,false altrimenti
+ */
+public boolean addIngredient(Ingredient ingredienteDaAggiungere){
+    if(!(ingredienti.contains(ingredienteDaAggiungere))){
+        ingredienti.add(ingredienteDaAggiungere);
+        return true;
     }
     return false;
 }

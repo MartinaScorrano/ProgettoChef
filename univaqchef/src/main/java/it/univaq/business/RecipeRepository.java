@@ -54,19 +54,28 @@ public List<BaseRecipe> getAllRecipe(){
 }
 /**
  * Metodo per eliminare una ricetta dalla repository
+ * @param ricettaDaEliminare la ricetta da eliminare dall'archivio
  * @return true se la ricetta è stata trovata ed eliminata con successo,false altrimenti
  * @throws ElementNotFoundException se la ricetta da eliminare non era presente nell'archivio
  */
 public boolean deleteRecipe(BaseRecipe ricettaDaEliminare) throws ElementNotFoundException{
-    for(BaseRecipe ricetta:ricettario){
-        if(ricetta.equals(ricettaDaEliminare)){
-            ricettario.remove(ricetta);
-            return true;
-        }
-
+    if(ricettario.contains(ricettaDaEliminare)){
+        ricettario.remove(ricettaDaEliminare);
+        return true;
     }
     return false;
-
+}
+/**
+ * Metodo per l'aggiunta di ricette nell'archivio
+ * @param ricettaDaAggiungere la ricetta da aggiungere all'archivio
+ * @return true se l'aggiunta è andata a buon fine e la ricetta non era effettivamente già presente,false altrimenti
+ */
+public boolean addRecipe(BaseRecipe ricettaDaAggiungere){
+    if(!(ricettario.contains(ricettaDaAggiungere))){
+        ricettario.add(ricettaDaAggiungere);
+        return true;
+}
+return false;
 }
 
     

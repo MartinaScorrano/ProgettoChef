@@ -27,6 +27,7 @@ public List<BaseRecipe> getAll(){
 }
 /**
  * Metodo per l'eliminazione di una ricetta dal ricettario
+ * @param ricetta la ricetta da eliminare
  */
 public void delete(BaseRecipe ricetta){
    try{ recipeRepo.deleteRecipe(ricetta);
@@ -35,9 +36,13 @@ catch(ElementNotFoundException e){
     System.out.println(e.getMessage());
 }
 
-
-
-
+}
+/**
+ * Metodo per l'aggiunta di una nuova ricetta se non già presente
+ * @param ricetta la ricetta da aggiungere
+ */
+public void add(BaseRecipe ricetta){
+    recipeRepo.addRecipe(ricetta);
 }
 }
 
