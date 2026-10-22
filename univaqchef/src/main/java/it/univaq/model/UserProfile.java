@@ -28,6 +28,19 @@ public UserProfile(String name,String surname,List<Allergy> allergies,List<TypeD
     this.numberOfPeople=numberOfPeople;
     this.sweetTreats=sweetTreats;
 }
+
+@Override
+public String toString(){
+    return "Il profilo di "+getName()+ getSurname()+" ha le seguenti allergie: "+getAllergies()+ ",ha scelto il seguente tipo di dieta: "+getTypeDiet()+" coccolandosi di tanto in tanto con i seguenti ingredienti preferiti: "+getSweetTreats()+ " adattando le proprie ricette per il seguente numero di persone: "+getNumberOfPeople(); 
+
+}
+@Override 
+public boolean equals(Object obj){
+    if(this==obj) return true;
+    if(!( obj instanceof UserProfile)) return false;
+    UserProfile user=(UserProfile) obj;
+    return this.getName().equals(user.getName()) && this.getSurname().equals(user.getSurname());
+}
 /**
  * Metodo getter per il nome dell'utente
  * @return il nome dell'utente

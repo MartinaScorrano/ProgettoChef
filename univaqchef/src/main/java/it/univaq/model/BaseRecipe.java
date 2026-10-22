@@ -36,6 +36,11 @@ public BaseRecipe(String title,String description,List<IngredientRecipe> list,in
     this.category=category;
     this.steps=steps;
 }
+@Override 
+public String toString(){
+    return "La ricetta: "+getTitle()+" ha la seguente descrizione: "+getDescription()+".Gli ingredienti necessari alla preparazione sono: "+getListIngredients()+
+    ". Per la preparazione di questa ricetta saranno necessari "+getTimePreparation()+ " minuti e "+getTimeToBeCooked()+" minuti per la cottura. Questa ricetta è ottima per "+getNumberPortions()+" persone.Ha una valutazione di "+getValutation()+" stelle su 5. Ha una difficoltà "+getDifficulty()+".Il piatto appartiene alla categoria"
+}
 /**
  * Metodo getter per il titolo
  * @return il titolo della ricetta
