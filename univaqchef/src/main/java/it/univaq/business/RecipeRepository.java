@@ -34,11 +34,14 @@ public boolean salva(List<BaseRecipe> ricettario){
         }
 
 }
-public List<BaseRecipe> filter(Predicate<BaseRecipe> predicate) {
-        return ricettario.stream()
-                      .filter(predicate)
-                      .collect(Collectors.toList());
-    }
+/**
+ * Metodo per il filtraggio delle ricette in base a specifici criteri
+ * @param criterio il criterio da rispettare per il filtraggio
+ * @return la lista delle ricette filtrata
+ */
+public List<BaseRecipe> filterRecipe(Predicate<BaseRecipe> criterio){
+    return ricettario.stream().filter(criterio).collect(Collectors.toList());
+}
 
 
     

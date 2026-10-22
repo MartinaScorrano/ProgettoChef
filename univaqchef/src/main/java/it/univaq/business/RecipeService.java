@@ -1,14 +1,13 @@
 package it.univaq.business;
-import it.univaq.model.Recipe;
-import java.util.function.Predicate;
-import it.univaq.model.BaseRecipe;
 import java.util.List;
-import it.univaq.model.WeeklyPlan;
+import java.util.function.Predicate;
+
+import it.univaq.model.BaseRecipe;
 
 /**
  * Classe RecipeService utilizzata al fine di modellare tutti i servizi associati alle ricette
  */
-public class RecipeService implements Predicate<BaseRecipe>{
+public class RecipeService {
     private final RecipeRepository repository; 
 /**
  * Metodo costruttore della classe RecipeService
