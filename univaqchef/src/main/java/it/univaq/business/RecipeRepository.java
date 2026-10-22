@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import it.univaq.exceptions.ElementNotFoundException;
 import it.univaq.model.BaseRecipe;
 /**
  * Classe RecipeRepository utilizzata per salvare tutte le ricette create
@@ -51,7 +52,22 @@ public List<BaseRecipe> filterRecipe(Predicate<BaseRecipe> criterio){
 public List<BaseRecipe> getAllRecipe(){
     return ricettario;
 }
+/**
+ * Metodo per eliminare una ricetta dalla repository
+ * @return true se la ricetta è stata trovata ed eliminata con successo,false altrimenti
+ * @throws ElementNotFoundException se la ricetta da eliminare non era presente nell'archivio
+ */
+public boolean deleteRecipe(BaseRecipe ricettaDaEliminare) throws ElementNotFoundException{
+    for(BaseRecipe ricetta:ricettario){
+        if(ricetta.equals(ricettaDaEliminare)){
+            ricettario.remove(ricetta);
+            return true;
+        }
 
+    }
+    return false;
+
+}
 
     
 }

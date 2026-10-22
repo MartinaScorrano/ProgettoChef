@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import it.univaq.exceptions.ElementNotFoundException;
 import it.univaq.model.Ingredient;
 /**
  * Classe IngredientRepository utilizzata per salvare tutti gli ingredienti presenti
@@ -34,9 +35,7 @@ public boolean salva(List<Ingredient> ingredienti){
             log("Errore durante il salvataggio su file: " + e.getMessage());
             return false;
         }
-
-
-}
+    }
 /**
  * Metodo getter per l'intera lista degli ingredienti
  * @return la lista degli ingredienti creati
@@ -52,5 +51,18 @@ public List<Ingredient> getAllIngredient(){
 public List<Ingredient> filterIngredient(Predicate<Ingredient> criterio){
     return ingredienti.stream().filter(criterio).collect(Collectors.toList());
 }
-  
+/**
+ * Metodo per eliminare un ingrediente dalla relativa lista
+ * @return true se l'elemento è stato trovato e l'eliminazione è andata a buon fine,false altrimenti
+ * @throws ElementNotFoundException se l'ingrediente da eliminare non è presente nell'archivio
+ */
+public boolean deleteIngredient(Ingredient ingredienteDaEliminare) throws ElementNotFoundException{
+    for(Ingredient ingrediente:ingredienti){
+        if(ingrediente.equals(ingredienteDaEliminare)){
+            ingredienti.remove(ingrediente);
+            return true;
+        }
+    }
+    return false;
+}
 }
