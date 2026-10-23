@@ -46,4 +46,5 @@ public List<Ingredient> getAll(){
 public void add(Ingredient ingrediente){
     ingredientRepo.addIngredient(ingrediente);
 }
+
 }
