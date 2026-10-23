@@ -1,23 +1,26 @@
 package it.univaq.business;
+
 import java.io.File;
 import java.io.IOException;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import it.univaq.model.WeeklyPlan;
-/**
- * Classe WeeklyPlanRepository utilizzata per salvare tutti i piani settimanali creati
- */
-public class WeeklyPlanRepository extends DataModelSalvabile<WeeklyPlan>{
-    private final ObjectMapper objectMapper=new ObjectMapper();
 
-    @Override 
-    public boolean salva(WeeklyPlan weeklyPlan){
-        if(weeklyPlan==null){
+/**
+ * Classe WeeklyPlanRepository utilizzata per salvare tutti i piani settimanali
+ * creati
+ */
+public class WeeklyPlanRepository extends DataModelSalvabile<WeeklyPlan> {
+    private final ObjectMapper objectMapper = new ObjectMapper();
+
+    @Override
+    public boolean salva(WeeklyPlan weeklyPlan) {
+        if (weeklyPlan == null) {
             log("Errore:impossibile salvare un piano settimanale inesistente");
             return false;
         }
-        log("Salvataggio in corso del piano settimanale "+weeklyPlan.getStartDate());
+        log("Salvataggio in corso del piano settimanale " + weeklyPlan.getStartDate());
         String nomeFile = weeklyPlan.getStartDate().toLowerCase().replaceAll("\\s+", "_") + ".json";
         File fileOutput = new File(nomeFile);
         try {
