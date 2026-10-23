@@ -2,4 +2,6 @@ package it.univaq.model;
 
 public class WeeklyPlan {
     
+
+    
 }

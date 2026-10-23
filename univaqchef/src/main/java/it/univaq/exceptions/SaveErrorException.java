@@ -1,5 +1,5 @@
 package it.univaq.exceptions;
 
-public class SaveErrorException {
+public class SaveErrorException extends Exception{
 
 }
