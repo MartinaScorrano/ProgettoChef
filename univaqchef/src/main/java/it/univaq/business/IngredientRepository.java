@@ -18,7 +18,7 @@ public class IngredientRepository extends DataModelSalvabile<List<Ingredient>> {
     private final List<Ingredient> ingredienti=new ArrayList<>();
 @Override 
 public boolean salva(List<Ingredient> ingredienti){
-    if(ingredienti.size()==0){
+    if(ingredienti.isEmpty()){
         log("Errore:impossibile salvare una lista vuota di ingredienti");
         return false;
     }

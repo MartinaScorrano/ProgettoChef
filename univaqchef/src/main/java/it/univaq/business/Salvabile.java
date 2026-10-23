@@ -1,4 +1,5 @@
 package it.univaq.business;
+import it.univaq.exceptions.SaveErrorException;
 
 /**
  * Interfaccia Salvabile con tipo generico T utilizzata per salvare dati
