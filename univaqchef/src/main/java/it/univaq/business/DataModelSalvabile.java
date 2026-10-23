@@ -12,6 +12,8 @@ public abstract class DataModelSalvabile<T> implements Salvabile<T> {
      * 
      * @param message il messaggio stampato sulla console per il salvataggio
      */
+
+    /* Implementare Log4j per stampare qualsiasi cosa nel programma */
     protected void log(String message) {
         System.out.println("[LOG]" + message);
     }

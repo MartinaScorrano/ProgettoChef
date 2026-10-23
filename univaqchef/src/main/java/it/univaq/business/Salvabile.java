@@ -14,5 +14,10 @@ public interface Salvabile<T> {
      * @param entity l'oggetto da salvare
      * @return true se il salvataggio è andato a buon fine,false altrimenti;
      */
-    public boolean salva(T entity);
+
+    /*
+     * Far lanciare un eccezione a questo metodo, il booleano nìe basta non serve,
+     * non è abbastanza, implementare SaveErrorException
+     */
+    public boolean salva(T entity) throws SaveErrorException;
 }
