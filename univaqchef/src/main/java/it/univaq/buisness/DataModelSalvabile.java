@@ -1,4 +1,4 @@
-package it.univaq.business;
+package it.univaq.buisness;
 
 /**
  * Classe astratta DataModelSalvabile per utilizzata per rappresentare la logica

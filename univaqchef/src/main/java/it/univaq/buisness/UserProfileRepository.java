@@ -1,4 +1,4 @@
-package it.univaq.business;
+package it.univaq.buisness;
 
 import java.io.File;
 import java.io.IOException;

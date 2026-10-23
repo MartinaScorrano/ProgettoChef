@@ -1,4 +1,4 @@
-package it.univaq.business;
+package it.univaq.buisness;
 
 import java.util.List;
 
@@ -44,14 +44,16 @@ public class IngredientService {
         } catch (ElementNotFoundException e) {
             System.out.println(e.getMessage());
 
-  } 
-    
-}
-/**
- * Metodo per l'aggiunta di un ingrediente all'archivio
- * @param ingrediente l'ingrediente da aggiungere
- */
-public void add(Ingredient ingrediente){
-    ingredientRepo.addIngredient(ingrediente);
-}
+        }
+
+    }
+
+    /**
+     * Metodo per l'aggiunta di un ingrediente all'archivio
+     * 
+     * @param ingrediente l'ingrediente da aggiungere
+     */
+    public void add(Ingredient ingrediente) {
+        ingredientRepo.addIngredient(ingrediente);
+    }
 }

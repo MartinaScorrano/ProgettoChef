@@ -1,5 +1,5 @@
-package it.univaq.business;
+package it.univaq.buisness;
 
 public class WeeklyPlanService {
-    
+
 }
