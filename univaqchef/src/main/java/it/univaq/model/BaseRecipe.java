@@ -166,6 +166,26 @@ public abstract class BaseRecipe {
     }
 
     /**
+     * Aggiunge un passo alla sequenza di preparazione;
+     * @param step il nuovo passo della ricetta;
+     */
+
+    public void addStep(PreparationStep step) {
+        if (step != null) {
+            this.steps.add(step);
+        }
+    }
+
+    /**
+     * Rimuove un passo dalla sequenza;
+     * @param step il passo da rimuovere;
+     */
+
+    public void removeStep(PreparationStep step) {
+        this.steps.remove(step);
+    }
+
+    /**
      * Metodo getter per la categoria della ricetta
      * 
      * @return la categoria della ricetta
@@ -202,7 +222,7 @@ public abstract class BaseRecipe {
     }
 
     /**
-     * Metodo setter per il tempo necessario alla cottura del cibo
+     * Metodo setter per il tempo necessario alla cottura del cibo.
      * 
      * @param tempoCottura il tempo necessario alla cottura
      */
@@ -212,7 +232,7 @@ public abstract class BaseRecipe {
 
     /**
      * Metodo che restituisce il conteggio totale della calorie per la ricetta
-     * scelta
+     * scelta.
      * 
      * @return il numero totale di calorie espresso in kcal.
      */

@@ -21,7 +21,7 @@ public class RecipeRepository extends DataModelSalvabile<List<BaseRecipe>> {
 
     @Override
     public boolean salva(List<BaseRecipe> ricettario) {
-        if (ricettario.size() == 0) {
+        if (ricettario.isEmpty()) {
             log("Errore:impossibile salvare una lista vuota di ricette");
             return false;
         }
