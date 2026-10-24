@@ -45,12 +45,19 @@ public String getName() {
  */
 @Override
 public boolean equals(Object o) {
-        return o instanceof Ingredient i && name =! null && name.equalsIgnoreCase(i.name);
-    }
-@Override public int hashCode() { return name != null ? name.toLowerCase().hashCode(): 0; }    
+    if (this == o) return true;
+    return o instanceof Ingredient i 
+            && name != null 
+            && name.equalsIgnoreCase(i.name);
+}
+
+@Override
+public int hashCode() {
+    return name != null ? name.toLowerCase().hashCode() : 0;
+}
 
 @Override 
 public String toString(){
-    return "L'ingrediente "+getName()+" solitamente espresso in "+getMeasure()+" contiene un totale di "+getCalories()+" kcal. Appertiene alla categoria "+getCategory()+" e contiene le sequenti allergie: "+getAllergies();
+    return "L'ingrediente "+getName()+" solitamente espresso in "+getMeasure()+" contiene un totale di "+getCalories()+" kcal. Appartiene alla categoria "+getCategory()+" e contiene le seguenti allergie: "+getAllergies();
 }
 }
