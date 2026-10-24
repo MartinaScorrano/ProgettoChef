@@ -34,17 +34,17 @@ public abstract class BaseRecipe {
      */
     public BaseRecipe(String title, String description, List<IngredientRecipe> list, int timePreparation,
             int timeToBeCooked, int numberPortions, int valutation, Difficulty difficulty, PlateCategory category,
-            PreparationStep steps) {
+            List<PreparationStep> steps) {
         this.title = title;
         this.description = description;
-        this.list = list;
+        this.list = (list != null) ? new ArrayList<>(list) : new ArrayList<>();
         this.timePreparation = timePreparation;
         this.timeToBeCooked = timeToBeCooked;
         this.numberPortions = numberPortions;
         this.valutation = valutation;
         this.difficulty = difficulty;
         this.category = category;
-        this.steps = steps;
+        this.steps = (steps != null) ? new ArrayList<>(steps) : new ArrayList<>();
     }
 
     @Override
@@ -76,10 +76,6 @@ public abstract class BaseRecipe {
         return title;
     }
 
-    /**
-     * Metodo getter dei passi di preparazione della ricetta;
-     * @return la lista ORDINATA dei passi;
-     */
 
     public PreparationStep getPreparationSteps() {
         return steps;
@@ -175,7 +171,7 @@ public abstract class BaseRecipe {
     }
 
     /**
-     * Metodo setter per il tempo necessario alla preparazione della ricetta
+     * Metodo setter per il tempo necessario alla preparazione della ricetta.
      * 
      * @param tempoPreparazione il tempo necessario alla preparazione
      */
