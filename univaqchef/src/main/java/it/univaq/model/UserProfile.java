@@ -39,10 +39,12 @@ public class UserProfile {
 
     @Override
     public String toString() {
-        return "Il profilo di " + getName() + getSurname() + " ha le seguenti allergie: " + getAllergies()
-                + ",ha scelto il seguente tipo di dieta: " + getTypeDiet()
-                + " coccolandosi di tanto in tanto con i seguenti ingredienti preferiti: " + getSweetTreats()
-                + " adattando le proprie ricette per il seguente numero di persone: " + getNumberOfPeople();
+        return "Il profilo di " + name + surname +
+         " ha le seguenti allergie: " + allergies
+                + ",ha scelto il seguente tipo di dieta: " + typeDiet
+                + " coccolandosi di tanto in tanto con i seguenti ingredienti preferiti: " +
+                 sweetTreats
+                + " adattando le proprie ricette per il seguente numero di persone: " + numberOfPeople;
 
     }
 

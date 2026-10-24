@@ -12,8 +12,7 @@ public abstract class BaseRecipe {
     public int timePreparation, timeToBeCooked, numberPortions, valutation;
     public Difficulty difficulty;
     public PlateCategory category;
-
-    private List<PreparationStep> steps;
+    private PreparationStep steps;
 
     /**
      * Metodo costruttore della classe BaseRecipe
@@ -50,12 +49,12 @@ public abstract class BaseRecipe {
 
     @Override
     public String toString() {
-        return "La ricetta: " + getTitle() + " ha la seguente descrizione: " + getDescription()
-                + ".Gli ingredienti necessari alla preparazione sono: " + getListIngredients() +
-                ". Per la preparazione di questa ricetta saranno necessari " + getTimePreparation() + " minuti e "
-                + getTimeToBeCooked() + " minuti per la cottura. Questa ricetta è ottima per " + getNumberPortions()
-                + " persone.Ha una valutazione di " + getValutation() + " stelle su 5. Ha una difficoltà "
-                + getDifficulty() + ".Il piatto appartiene alla categoria " + getCategory();
+        return "La ricetta: " + title + " ha la seguente descrizione: " +  description
+                + ".Gli ingredienti necessari alla preparazione sono: " + list +
+                ". Per la preparazione di questa ricetta saranno necessari " + timePreparation + " minuti e "
+                + timeToBeCooked + " minuti per la cottura. Questa ricetta è ottima per " + numberPortions
+                + " persone.Ha una valutazione di " + valutation + " stelle su 5. Ha una difficoltà "
+                + difficulty + ".Il piatto appartiene alla categoria " + category;
     }
 
     @Override
@@ -77,31 +76,11 @@ public abstract class BaseRecipe {
         return title;
     }
 
-    /**
-     * Metodo getter dei passi di preparazione.
-     * @return la lista ORDINATA dei passi di preparazione.
-     * 
-     */
-    public List<PreparationStep> getSteps() {
-        return this.steps;
+
+    public PreparationStep getPreparationSteps() {
+        return steps;
     }
 
-    /**
-     * Aggiunge un passo alla sequenza;
-     * @param step il passo di preparazione;
-     */
-    public void addStep(PreparationStep step) {
-        if (step != null) {
-            this.steps.add(step);
-        }
-    }
-    /**
-     * Rimuove un singolo passo alla sequenza;
-     * @param step il passo di preparazione;
-     */
-    public void removeStep(PreparationStep step) {
-        this.steps.remove(step);
-    }
     /**
      * Metodo getter per la descrizione
      * 
@@ -164,7 +143,6 @@ public abstract class BaseRecipe {
     public Difficulty getDifficulty() {
         return difficulty;
     }
-
     /**
      * Metodo getter per la categoria della ricetta
      * 
@@ -202,7 +180,7 @@ public abstract class BaseRecipe {
     }
 
     /**
-     * Metodo setter per il tempo necessario alla cottura del cibo
+     * Metodo setter per il tempo necessario alla cottura del cibo.
      * 
      * @param tempoCottura il tempo necessario alla cottura
      */
@@ -212,7 +190,7 @@ public abstract class BaseRecipe {
 
     /**
      * Metodo che restituisce il conteggio totale della calorie per la ricetta
-     * scelta
+     * scelta.
      * 
      * @return il numero totale di calorie espresso in kcal.
      */
