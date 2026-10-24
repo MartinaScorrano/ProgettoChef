@@ -12,6 +12,18 @@ import it.univaq.exceptions.ElementNotFoundException;
  * 
  */
 public class QuickRecipe extends BaseRecipe {
+    public static final int MAX_PREPARATION_TIME = 30;
+    private static final Map<String, List<String>> FAST_SUBSTITIONS = new HashMap<>();
+
+    static {
+        FAST_SUBSTITUTIONS.put("legumi secchi", List.of("legumi precotti in scatola"));
+        FAST_SUBSTITUTIONS.put("pomodori freschi", List.of("passata di pomodoro", "polpa pronta"));
+        FAST_SUBSTITUTIONS.put("pasta fresca", List.of("pasta secca a cottura rapida"));
+        FAST_SUBSTITUTIONS.put("cipolla intera", List.of("cipolla surgelata tritata", "cipolla in polvere"));
+        FAST_SUBSTITUTIONS.put("brodo fatto in casa", List.of("brodo vegetale pronto", "dado"));
+        FAST_SUBSTITUTIONS.put("patate intere", List.of("purea in fiocchi", "patate novelle precotte"));
+    }
+
     public int rangePreparationTime;
 
     /**
@@ -43,6 +55,16 @@ public class QuickRecipe extends BaseRecipe {
         super(title, description, list, timePreparation, timeToBeCooked, numberPortions, valutation, difficulty,
                 category, steps);
         this.rangePreparationTime = rangePreparationTime;
+
+        if (timePreparation > MAX_PREPARATION_TIME) {
+            throw new InvalidRecipeException(
+                "Una ricetta veloce non può richiedere più di " + MAX_PREPARATION_TIME + " minuti!" 
+            );
+        }
+    }
+
+    if (timePreparation < 0) {
+        throw new InvalidRecipeException("Tempo di preparazione non valido.");
     }
 
     /**
@@ -50,7 +72,7 @@ public class QuickRecipe extends BaseRecipe {
      * 
      * @return il range temporale impostato dall'utente
      */
-    public int getRangePreparationTime() {
+    private int getRangePreparationTime() {
         return this.rangePreparationTime;
     }
 
@@ -83,5 +105,27 @@ public class QuickRecipe extends BaseRecipe {
 
         }
         return lista;
+    }
+
+
+    /**
+     * Suggerisce ingredienti o varianti rapide in sostituzione a quello fornito.
+     * @param ingredient l'ingrediente per cui si cerca un'alternativa.
+     * @return lista di alternative rapide suggerite, oppure lista vuota se nessuna alternativa nota.
+     */
+
+    public List<String> suggestSubstitution(Ingredient ingredient) {
+        if (ingredient == null || ingredient.getName() == null) {
+            return Collections.emptyList();
+        }
+        String targetIng = ingredient.getName().trim().toLowerCase();
+
+        for (Map.Entry<String, List<String>> entry : FAST_SUBSTITIONS.entrySet()) {
+            if (targetIng.contains(entry.getKey()) || entry.getKey().contains(targetIng)) {
+                return entry.getValue();
+            }
+        }
+
+        return Collections.emptyList();
     }
 }
