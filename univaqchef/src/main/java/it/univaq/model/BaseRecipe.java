@@ -12,7 +12,8 @@ public abstract class BaseRecipe {
     public int timePreparation, timeToBeCooked, numberPortions, valutation;
     public Difficulty difficulty;
     public PlateCategory category;
-    public PreparationStep steps;
+
+    private List<PreparationStep> steps;
 
     /**
      * Metodo costruttore della classe BaseRecipe
@@ -34,17 +35,17 @@ public abstract class BaseRecipe {
      */
     public BaseRecipe(String title, String description, List<IngredientRecipe> list, int timePreparation,
             int timeToBeCooked, int numberPortions, int valutation, Difficulty difficulty, PlateCategory category,
-            PreparationStep steps) {
+            List<PreparationStep> steps) {
         this.title = title;
         this.description = description;
-        this.list = list;
+        this.list = (list != null) ? new ArrayList<>(list) : new ArrayList<>();
         this.timePreparation = timePreparation;
         this.timeToBeCooked = timeToBeCooked;
         this.numberPortions = numberPortions;
         this.valutation = valutation;
         this.difficulty = difficulty;
         this.category = category;
-        this.steps = steps;
+        this.steps = (steps != null) ? new ArrayList<>(steps) : new ArrayList<>();
     }
 
     @Override
@@ -76,6 +77,31 @@ public abstract class BaseRecipe {
         return title;
     }
 
+    /**
+     * Metodo getter dei passi di preparazione.
+     * @return la lista ORDINATA dei passi di preparazione.
+     * 
+     */
+    public List<PreparationStep> getSteps() {
+        return this.steps;
+    }
+
+    /**
+     * Aggiunge un passo alla sequenza;
+     * @param step il passo di preparazione;
+     */
+    public void addStep(PreparationStep step) {
+        if (step != null) {
+            this.steps.add(step);
+        }
+    }
+    /**
+     * Rimuove un singolo passo alla sequenza;
+     * @param step il passo di preparazione;
+     */
+    public void removeStep(PreparationStep step) {
+        this.steps.remove(step);
+    }
     /**
      * Metodo getter per la descrizione
      * 
