@@ -1,9 +1,13 @@
 package it.univaq.model;
 
+
+import java.util.Comparator;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import it.univaq.exceptions.ElementNotFoundException;
+import it.univaq.exceptions.InvalidRecipeException;
 
 /**
  * Classe QuickRecipe utilizzata per ricette veloci da poter preparare in un
@@ -13,17 +17,7 @@ import it.univaq.exceptions.ElementNotFoundException;
  */
 public class QuickRecipe extends BaseRecipe {
     public static final int MAX_PREPARATION_TIME = 30;
-    private static final Map<String, List<String>> FAST_SUBSTITIONS = new HashMap<>();
-
-    static {
-        FAST_SUBSTITUTIONS.put("legumi secchi", List.of("legumi precotti in scatola"));
-        FAST_SUBSTITUTIONS.put("pomodori freschi", List.of("passata di pomodoro", "polpa pronta"));
-        FAST_SUBSTITUTIONS.put("pasta fresca", List.of("pasta secca a cottura rapida"));
-        FAST_SUBSTITUTIONS.put("cipolla intera", List.of("cipolla surgelata tritata", "cipolla in polvere"));
-        FAST_SUBSTITUTIONS.put("brodo fatto in casa", List.of("brodo vegetale pronto", "dado"));
-        FAST_SUBSTITUTIONS.put("patate intere", List.of("purea in fiocchi", "patate novelle precotte"));
-    }
-
+    
     public int rangePreparationTime;
 
     /**
@@ -48,6 +42,7 @@ public class QuickRecipe extends BaseRecipe {
      * @param rangePreparationTime il range di tempo definito dall'utente per la
      *                             preparazione del pasto
      * @return una nuova istanza di QuickRecipe
+     * @throws InvalidRecipeException se timePreparation supera 30 minuti
      */
     public QuickRecipe(String title, String description, List<IngredientRecipe> list, int timePreparation,
             int timeToBeCooked, int numberPortions, int valutation, Difficulty difficulty, PlateCategory category,
@@ -108,24 +103,28 @@ public class QuickRecipe extends BaseRecipe {
     }
 
 
-    /**
-     * Suggerisce ingredienti o varianti rapide in sostituzione a quello fornito.
-     * @param ingredient l'ingrediente per cui si cerca un'alternativa.
-     * @return lista di alternative rapide suggerite, oppure lista vuota se nessuna alternativa nota.
+   /**
+     * Suggerisce un ingrediente con cui sostituire uno della ricetta: della
+     * stessa categoria e unità di misura, non già presente nella ricetta, che
+     * non introduce allergeni nuovi e con le calorie più vicine all'originale.
+     *
+     * @param ingredient l'ingrediente della ricetta da sostituire
+     * @param candidates gli ingredienti disponibili tra cui scegliere
+     * @return il sostituto, oppure vuoto se l'ingrediente non è nella ricetta o
+     *         non c'è un'alternativa adatta
      */
-
-    public List<String> suggestSubstitution(Ingredient ingredient) {
-        if (ingredient == null || ingredient.getName() == null) {
-            return Collections.emptyList();
+    public Optional<Ingredient> suggestSubstitution(Ingredient ingredient, List<Ingredient> candidates) {
+        if (ingredient == null || candidates == null || !containsIngredient(ingredient)) {
+            return Optional.empty();
         }
-        String targetIng = ingredient.getName().trim().toLowerCase();
-
-        for (Map.Entry<String, List<String>> entry : FAST_SUBSTITIONS.entrySet()) {
-            if (targetIng.contains(entry.getKey()) || entry.getKey().contains(targetIng)) {
-                return entry.getValue();
-            }
-        }
-
-        return Collections.emptyList();
+        return candidates.stream()
+                .filter(c -> !c.equals(ingredient))
+                .filter(c -> !containsIngredient(c))
+                .filter(c -> c.getCategory() == ingredient.getCategory())
+                .filter(c -> c.getMeasure() == ingredient.getMeasure())
+                .filter(c -> ingredient.getAllergies().containsAll(c.getAllergies()))
+                .min(Comparator.comparingDouble(c -> Math.abs(c.getCalories() - ingredient.getCalories())));
     }
+
+    
 }
