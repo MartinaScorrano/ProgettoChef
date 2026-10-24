@@ -106,4 +106,26 @@ public class QuickRecipe extends BaseRecipe {
         }
         return lista;
     }
+
+
+    /**
+     * Suggerisce ingredienti o varianti rapide in sostituzione a quello fornito.
+     * @param ingredient l'ingrediente per cui si cerca un'alternativa.
+     * @return lista di alternative rapide suggerite, oppure lista vuota se nessuna alternativa nota.
+     */
+
+    public List<String> suggestSubstitution(Ingredient ingredient) {
+        if (ingredient == null || ingredient.getName() == null) {
+            return Collections.emptyList();
+        }
+        String targetIng = ingredient.getName().trim().toLowerCase();
+
+        for (Map.Entry<String, List<String>> entry : FAST_SUBSTITIONS.entrySet()) {
+            if (targetIng.contains(entry.getKey()) || entry.getKey().contains(targetIng)) {
+                return entry.getValue();
+            }
+        }
+
+        return Collections.emptyList();
+    }
 }
