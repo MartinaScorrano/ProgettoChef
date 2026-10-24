@@ -186,7 +186,7 @@ public abstract class BaseRecipe {
 
     /**
      * Metodo che restituisce il conteggio totale della calorie per la ricetta
-     * scelta
+     * scelta.
      * 
      * @return il numero totale di calorie espresso in kcal.
      */
