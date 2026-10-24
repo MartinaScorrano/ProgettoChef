@@ -12,7 +12,7 @@ public abstract class BaseRecipe {
     public int timePreparation, timeToBeCooked, numberPortions, valutation;
     public Difficulty difficulty;
     public PlateCategory category;
-    public PreparationStep steps;
+    private List<PreparationStep> steps;
 
     /**
      * Metodo costruttore della classe BaseRecipe
@@ -44,7 +44,7 @@ public abstract class BaseRecipe {
         this.valutation = valutation;
         this.difficulty = difficulty;
         this.category = category;
-        this.steps = steps;
+        this.steps = (steps != null) ? new ArrayList<>(steps) : new ArrayList<>();
     }
 
     @Override
@@ -74,6 +74,15 @@ public abstract class BaseRecipe {
      */
     public String getTitle() {
         return title;
+    }
+
+    /**
+     * Metodo getter dei passi di preparazione della ricetta;
+     * @return la lista ORDINATA dei passi;
+     */
+
+    public List<PreparationStep> getSteps() {
+        return Collections.unmodifiableList(this.steps);
     }
 
     /**
@@ -140,6 +149,26 @@ public abstract class BaseRecipe {
     }
 
     /**
+     * Aggiunge un passo alla sequenza di preparazione;
+     * @param step il nuovo passo della ricetta;
+     */
+
+    public void addStep(PreparationStep step) {
+        if (step != null) {
+            this.steps.add(step);
+        }
+    }
+
+    /**
+     * Rimuove un passo dalla sequenza;
+     * @param step il passo da rimuovere;
+     */
+
+    public void removeStep(PreparationStep step) {
+        this.steps.remove(step);
+    }
+
+    /**
      * Metodo getter per la categoria della ricetta
      * 
      * @return la categoria della ricetta
@@ -176,7 +205,7 @@ public abstract class BaseRecipe {
     }
 
     /**
-     * Metodo setter per il tempo necessario alla cottura del cibo
+     * Metodo setter per il tempo necessario alla cottura del cibo.
      * 
      * @param tempoCottura il tempo necessario alla cottura
      */
