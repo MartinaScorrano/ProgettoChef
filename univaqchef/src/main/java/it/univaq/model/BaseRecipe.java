@@ -1,6 +1,7 @@
 package it.univaq.model;
 
 import java.util.List;
+import java.util.ArrayList;
 
 /**
  * la classe BaseRecipe è una classe astratta utilizzata per indicare una
@@ -12,7 +13,7 @@ public abstract class BaseRecipe {
     public int timePreparation, timeToBeCooked, numberPortions, valutation;
     public Difficulty difficulty;
     public PlateCategory category;
-    private PreparationStep steps;
+    private List<PreparationStep> steps;
 
     /**
      * Metodo costruttore della classe BaseRecipe
@@ -37,14 +38,14 @@ public abstract class BaseRecipe {
             List<PreparationStep> steps) {
         this.title = title;
         this.description = description;
-        this.list = (list != null) ? new ArrayList<>(list) : new ArrayList<>();
+        this.list = list;
         this.timePreparation = timePreparation;
         this.timeToBeCooked = timeToBeCooked;
         this.numberPortions = numberPortions;
         this.valutation = valutation;
         this.difficulty = difficulty;
         this.category = category;
-        this.steps = (steps != null) ? new ArrayList<>(steps) : new ArrayList<>();
+        this.steps = new ArrayList<>();
     }
 
     @Override
@@ -76,14 +77,16 @@ public abstract class BaseRecipe {
         return title;
     }
 
-
-    public PreparationStep getPreparationSteps() {
+/**
+ * Metodo getter per gli step della preparazione
+ * @return la lista degli step di preparazione
+ */
+    public List<PreparationStep> getPreparationSteps() {
         return steps;
     }
 
     /**
      * Metodo getter per la descrizione
-     * 
      * @return la descrizione della ricetta
      */
     public String getDescription() {

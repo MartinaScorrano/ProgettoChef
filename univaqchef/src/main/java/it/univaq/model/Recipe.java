@@ -18,7 +18,8 @@ public class Recipe extends BaseRecipe{
  * @param category la categoria di piatto associato alla ricetta
  * @param steps gli step di preparazione della ricetta
  */
-    public Recipe(String title,String description,List<IngredientRecipe> list,int timePreparation,int timeToBeCooked,int numberPortions,int valutation,Difficulty difficulty,PlateCategory category,PreparationStep steps){
+    public Recipe(String title,String description,List<IngredientRecipe> list,int timePreparation,int timeToBeCooked,int numberPortions,int valutation,
+        Difficulty difficulty,PlateCategory category,List<PreparationStep> steps){
         super(title,description,list,timePreparation,timeToBeCooked,numberPortions,valutation,difficulty,category,steps);
     }
     

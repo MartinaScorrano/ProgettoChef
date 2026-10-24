@@ -36,7 +36,7 @@ public class TraditionalRecipe extends BaseRecipe {
      */
     public TraditionalRecipe(String title, String description, List<IngredientRecipe> list, int timePreparation,
             int timeToBeCooked, int numberPortions, int valutation, Difficulty difficulty, PlateCategory category,
-            PreparationStep steps, Region originRegion, String historyNotes, String suggestedWine) {
+            List<PreparationStep> steps, Region originRegion, String historyNotes, String suggestedWine) {
         super(title, description, list, timePreparation, timeToBeCooked, numberPortions, valutation, difficulty,
                 category, steps);
         this.originRegion = originRegion;
