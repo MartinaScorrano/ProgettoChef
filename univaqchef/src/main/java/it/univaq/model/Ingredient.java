@@ -58,6 +58,10 @@ public int hashCode() {
 
 @Override 
 public String toString(){
-    return "L'ingrediente "+getName()+" solitamente espresso in "+getMeasure()+" contiene un totale di "+getCalories()+" kcal. Appartiene alla categoria "+getCategory()+" e contiene le seguenti allergie: "+getAllergies();
+    return "L'ingrediente "+name+" solitamente espresso in "+measure
+    +" contiene un totale di "+
+    calories+
+    " kcal. Appartiene alla categoria "+category+
+    " e contiene le seguenti allergie: "+allergies;
 }
 }

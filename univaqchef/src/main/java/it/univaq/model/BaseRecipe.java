@@ -12,7 +12,7 @@ public abstract class BaseRecipe {
     public int timePreparation, timeToBeCooked, numberPortions, valutation;
     public Difficulty difficulty;
     public PlateCategory category;
-    private List<PreparationStep> steps;
+    private PreparationStep steps;
 
     /**
      * Metodo costruttore della classe BaseRecipe
@@ -44,17 +44,17 @@ public abstract class BaseRecipe {
         this.valutation = valutation;
         this.difficulty = difficulty;
         this.category = category;
-        this.steps = (steps != null) ? new ArrayList<>(steps) : new ArrayList<>();
+        this.steps = steps;
     }
 
     @Override
     public String toString() {
-        return "La ricetta: " + getTitle() + " ha la seguente descrizione: " + getDescription()
-                + ".Gli ingredienti necessari alla preparazione sono: " + getListIngredients() +
-                ". Per la preparazione di questa ricetta saranno necessari " + getTimePreparation() + " minuti e "
-                + getTimeToBeCooked() + " minuti per la cottura. Questa ricetta è ottima per " + getNumberPortions()
-                + " persone.Ha una valutazione di " + getValutation() + " stelle su 5. Ha una difficoltà "
-                + getDifficulty() + ".Il piatto appartiene alla categoria " + getCategory();
+        return "La ricetta: " + title + " ha la seguente descrizione: " +  description
+                + ".Gli ingredienti necessari alla preparazione sono: " + list +
+                ". Per la preparazione di questa ricetta saranno necessari " + timePreparation + " minuti e "
+                + timeToBeCooked + " minuti per la cottura. Questa ricetta è ottima per " + numberPortions
+                + " persone.Ha una valutazione di " + valutation + " stelle su 5. Ha una difficoltà "
+                + difficulty + ".Il piatto appartiene alla categoria " + category;
     }
 
     @Override
@@ -81,8 +81,8 @@ public abstract class BaseRecipe {
      * @return la lista ORDINATA dei passi;
      */
 
-    public List<PreparationStep> getSteps() {
-        return Collections.unmodifiableList(this.steps);
+    public PreparationStep getPreparationSteps() {
+        return steps;
     }
 
     /**
@@ -147,27 +147,6 @@ public abstract class BaseRecipe {
     public Difficulty getDifficulty() {
         return difficulty;
     }
-
-    /**
-     * Aggiunge un passo alla sequenza di preparazione;
-     * @param step il nuovo passo della ricetta;
-     */
-
-    public void addStep(PreparationStep step) {
-        if (step != null) {
-            this.steps.add(step);
-        }
-    }
-
-    /**
-     * Rimuove un passo dalla sequenza;
-     * @param step il passo da rimuovere;
-     */
-
-    public void removeStep(PreparationStep step) {
-        this.steps.remove(step);
-    }
-
     /**
      * Metodo getter per la categoria della ricetta
      * 
