@@ -193,7 +193,7 @@ public abstract class BaseRecipe {
     }
 
     /**
-     * Metodo setter per il tempo necessario alla preparazione della ricetta
+     * Metodo setter per il tempo necessario alla preparazione della ricetta.
      * 
      * @param tempoPreparazione il tempo necessario alla preparazione
      */
