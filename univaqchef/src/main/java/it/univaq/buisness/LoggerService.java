@@ -7,7 +7,7 @@ import java.IOException;
 
 public class LoggerService {
     /* Istanza statica e privata (SIngleton) */
-    private static final LoggerService instance = new LoggerService;
+    private static final LoggerService instance = new LoggerService();
     /*Motore di logging */
     private final Logger log4jLogger;
 

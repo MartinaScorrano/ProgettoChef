@@ -4,7 +4,7 @@ import java.util.Set;
  * La classe Ingredient viene utilizzata per la creazione di ingredienti 
  * necessari nelle liste della spesa e nelle ricette
  */
-public class Ingredient implements Filterable {
+public class Ingredient {
     private String name;
     private Measurement measure;
     private double calories;
@@ -63,5 +63,33 @@ public String toString(){
     calories+
     " kcal. Appartiene alla categoria "+category+
     " e contiene le seguenti allergie: "+allergies;
+}
+/**
+ * Metodo getter per le calorie di un ingrediente
+ * @return le calorie di un ingrediente
+ */
+public double getCalories(){
+    return calories;
+}
+/**
+ * Metodo getter per l' unità di misura dell'ingrediente
+ * @return l'unità di misura dell'ingrediente
+ */
+public Measurement getMeasure(){
+    return measure;
+}
+/**
+ * Metodo getter per la categoria dell'ingrediente
+ * @return la categoria dell'ingrediente
+ */
+public IngredientCategory getCategory(){
+    return category;
+}
+/**
+ * Metodo getter per le allergie legate all'ingrediente
+ * @return le allergie legate all'ingrediente
+ */
+public Set<Allergy> getAllergies(){
+    return allergies;
 }
 }

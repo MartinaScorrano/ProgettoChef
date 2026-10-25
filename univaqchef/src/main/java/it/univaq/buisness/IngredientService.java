@@ -53,7 +53,7 @@ public class IngredientService {
      * 
      * @param ingrediente l'ingrediente da aggiungere
      */
-    public void addIngredient(Ingredient ingredient) {
+    public void addIngredient(Ingredient ingrediente) {
         ingredientRepo.addIngredient(ingrediente);
     }
 }

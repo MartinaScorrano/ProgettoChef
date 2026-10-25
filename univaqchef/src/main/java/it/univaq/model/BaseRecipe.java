@@ -1,7 +1,7 @@
 package it.univaq.model;
 
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * la classe BaseRecipe è una classe astratta utilizzata per indicare una
@@ -194,11 +194,9 @@ public abstract class BaseRecipe {
     /**
      * Metodo che restituisce il conteggio totale della calorie per la ricetta
      * scelta.
-     * 
-     * @return il numero totale di calorie espresso in kcal.
      */
-    public String getTotalCalories() {
-        int count = 0;
+    public void getTotalCalories() {
+        double count = 0;
         for (IngredientRecipe ingredient : list) {
             count += ingredient.getCalories();
         }

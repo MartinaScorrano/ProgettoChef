@@ -3,12 +3,14 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 import java.time.DayOfWeek;
+import java.util.Set;
 /**
  * Classe WeeklyPlan utilizzata per la creazione di piani settimanali
  */
-public class WeeklyPlan implements Exportable {
+public class WeeklyPlan  {
     private final LocalDate startDate;
     private final Map<DayOfWeek, Map<Meal, List<BaseRecipe>>> plan;
+    private Set<Allergy> allergies;
 
     public WeeklyPlan(LocalDate startDate) {
         if (startDate == null) {
