@@ -2,6 +2,9 @@ package it.univaq.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeMap;
 
 /**
  * la classe BaseRecipe è una classe astratta utilizzata per indicare una
@@ -9,7 +12,7 @@ import java.util.List;
  */
 public abstract class BaseRecipe {
     public String title, description;
-    public List<IngredientRecipe> list;
+    public Map<IngredientRecipe,Map<Integer,Measurement>> list;
     public int timePreparation, timeToBeCooked, numberPortions, valutation;
     public Difficulty difficulty;
     public PlateCategory category;
@@ -33,12 +36,11 @@ public abstract class BaseRecipe {
      * @param steps           gli step da seguire per la preparazione della ricetta
      * @return una nuova istanza di BaseRecipe
      */
-    public BaseRecipe(String title, String description, List<IngredientRecipe> list, int timePreparation,
-            int timeToBeCooked, int numberPortions, int valutation, Difficulty difficulty, PlateCategory category,
-            List<PreparationStep> steps) {
+    public BaseRecipe(String title, String description, int timePreparation,
+            int timeToBeCooked, int numberPortions, int valutation, Difficulty difficulty, PlateCategory category) {
         this.title = title;
         this.description = description;
-        this.list = list;
+        this.list = new TreeMap<>();
         this.timePreparation = timePreparation;
         this.timeToBeCooked = timeToBeCooked;
         this.numberPortions = numberPortions;
@@ -65,7 +67,7 @@ public abstract class BaseRecipe {
         if (!(obj instanceof BaseRecipe))
             return false;
         BaseRecipe ricetta = (BaseRecipe) obj;
-        return this.getTitle().equals(ricetta.getTitle()) && this.getDescription().equals(ricetta.getDescription());
+        return this.title.equals(ricetta.getTitle()) && this.description.equals(ricetta.getDescription());
     }
 
     /**
@@ -98,8 +100,8 @@ public abstract class BaseRecipe {
      * 
      * @return la lista degli ingredienti
      */
-    public List<IngredientRecipe> getListIngredients() {
-        return list;
+    public Set<IngredientRecipe> getListIngredients() {
+        return list.keySet();
     }
 
     /**
@@ -197,7 +199,7 @@ public abstract class BaseRecipe {
      */
     public void getTotalCalories() {
         double count = 0;
-        for (IngredientRecipe ingredient : list) {
+        for (IngredientRecipe ingredient : list.keySet()) {
             count += ingredient.getCalories();
         }
         System.out.println("Questa ricetta contiene un totale di " + count + " kcal");

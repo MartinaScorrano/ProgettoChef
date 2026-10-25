@@ -55,7 +55,7 @@ public class UserProfile {
         if (!(obj instanceof UserProfile))
             return false;
         UserProfile user = (UserProfile) obj;
-        return this.getName().equals(user.getName()) && this.getSurname().equals(user.getSurname());
+        return this.name.equals(user.getName()) && this.surname.equals(user.getSurname());
     }
 
     /**
