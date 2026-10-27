@@ -29,6 +29,10 @@ public class LoggerService {
              */
             FileAppender fileAppender = new FileAppender(layout, "univaqchef.log", true);
 
+            /* Aggancia il file al motore di logging e imposta il livello minimo a INFO */
+            log4jLogger.addAppender(fileAppender);
+            log4jLogger.setLevel(Level.INFO);
+
         } catch (IOException e) {
             System.err.println("Errore: Impossibile creare il file di log - " + e.getMessage());
             System.err.println(
