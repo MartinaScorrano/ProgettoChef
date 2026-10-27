@@ -19,6 +19,11 @@ public class LoggerService {
          * stampa il messaggio e inserisce il carriage return per la riga successiva
          */
         PatternLayout layout = new PatternLayout("[%d{yyyy-MM-dd HH:mm:ss}]%-5p - %m%n");
+        /**
+         * Crea il collegamento fisico al file "univaqchef.log" (true serve per non
+         * canellare i vecchi log)
+         */
+        FileAppender fileAppender = new FileAppender(layout, "univaqchef.log", true);
     }
 
     /* Metodo che restituisce l'unica instanza comune a tutto il programma */
