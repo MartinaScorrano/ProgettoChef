@@ -1,9 +1,8 @@
 package it.univaq.buisness;
 
-import org.apache.log4j.BasicConfiguration;
+import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
-import java.IOException;
 
 public class LoggerService {
     /* Istanza statica e privata (SIngleton) */
