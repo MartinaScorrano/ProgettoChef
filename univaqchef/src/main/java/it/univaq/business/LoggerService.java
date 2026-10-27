@@ -8,6 +8,11 @@ import java.io.IOException;
 
 import org.apache.log4j.FileAppender;
 
+/**
+ * La classe andra chiamata nel resto del programma in questo modo:
+ * LoggerService.getInstance().info("messaggio") (oppure error ecc ecc)
+ */
+
 public class LoggerService {
     /* Istanza statica e privata (SIngleton) */
     private static final LoggerService instance = new LoggerService();
