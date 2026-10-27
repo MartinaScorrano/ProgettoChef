@@ -3,6 +3,9 @@ package it.univaq.buisness;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PatternLayout;
+
+import java.io.IOException;
+
 import org.apache.log4j.FileAppender;
 
 public class LoggerService {
@@ -13,6 +16,7 @@ public class LoggerService {
 
     private LoggerService() {
         log4jLogger = Logger.getLogger("UnivaqChef");
+        try {
         /*
          * Aspetto del log: data leggibile da esseri umani, formatta i livelli(INFO,
          * WARN, ERROR)
@@ -24,6 +28,10 @@ public class LoggerService {
          * canellare i vecchi log)
          */
         FileAppender fileAppender = new FileAppender(layout, "univaqchef.log", true);
+        
+        } catch (IOException) {
+
+        }
     }
 
     /* Metodo che restituisce l'unica instanza comune a tutto il programma */
