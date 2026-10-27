@@ -44,4 +44,17 @@ public class LoggerService {
     public static LoggerService getInstance() {
         return instance;
     }
+
+    /**
+     * Metodi pubblici per permettere di loggare
+     * 
+     * @param message
+     */
+    public void info(String message) {
+        log4jLogger.info(message);
+    }
+
+    public void error(String message) {
+        log4jLogger.error(message);
+    }
 }
