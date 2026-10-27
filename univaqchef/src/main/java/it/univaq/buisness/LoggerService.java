@@ -1,12 +1,10 @@
 package it.univaq.buisness;
 
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
-import org.apache.log4j.PatternLayout;
-
 import java.io.IOException;
 
 import org.apache.log4j.FileAppender;
+import org.apache.log4j.Logger;
+import org.apache.log4j.PatternLayout;
 
 public class LoggerService {
     /* Istanza statica e privata (SIngleton) */
@@ -29,7 +27,7 @@ public class LoggerService {
          */
         FileAppender fileAppender = new FileAppender(layout, "univaqchef.log", true);
         
-        } catch (IOException) {
+        } catch (IOException exception) {
 
         }
     }
