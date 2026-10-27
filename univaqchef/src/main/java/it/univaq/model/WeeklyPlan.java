@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Map;
 import java.time.DayOfWeek;
 import java.util.Set;
+import java.util.EnumMap;
+import java.util.ArrayList;
 /**
  * Classe WeeklyPlan utilizzata per la creazione di piani settimanali
  */

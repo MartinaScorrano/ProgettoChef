@@ -1,5 +1,4 @@
 package it.univaq.model;
-import java.util.List;
 
 
 /**
@@ -33,11 +32,10 @@ public class QuickRecipe extends BaseRecipe {
      * @param time il tempo che l'utente ha a disposizione per la preparazione del piatto
      * @return una nuova istanza di QuickRecipe
      */
-    public QuickRecipe(String title, String description, List<IngredientRecipe> list, int timePreparation,
-            int timeToBeCooked, int numberPortions, int valutation, Difficulty difficulty, PlateCategory category,
-            List<PreparationStep> steps,int time) {
-        super(title, description, list, timePreparation, timeToBeCooked, numberPortions, valutation, difficulty,
-                category, steps);
+    public QuickRecipe(String title, String description, int timePreparation,
+            int timeToBeCooked, int numberPortions, int valutation, Difficulty difficulty, PlateCategory category,int time) {
+        super(title, description,timePreparation, timeToBeCooked, numberPortions, valutation, difficulty,
+                category);
                 this.time=time;
         }
     /**

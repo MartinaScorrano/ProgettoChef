@@ -1,6 +1,4 @@
 package it.univaq.model;
-
-import java.util.List;
 /**
  * Classe concreta Recipe utilizzata per la creazione di oggetti di tipo Ricetta
  */
@@ -18,9 +16,9 @@ public class Recipe extends BaseRecipe{
  * @param category la categoria di piatto associato alla ricetta
  * @param steps gli step di preparazione della ricetta
  */
-    public Recipe(String title,String description,List<IngredientRecipe> list,int timePreparation,int timeToBeCooked,int numberPortions,int valutation,
-        Difficulty difficulty,PlateCategory category,List<PreparationStep> steps){
-        super(title,description,list,timePreparation,timeToBeCooked,numberPortions,valutation,difficulty,category,steps);
+    public Recipe(String title,String description,int timePreparation,int timeToBeCooked,int numberPortions,int valutation,
+        Difficulty difficulty,PlateCategory category){
+        super(title,description,timePreparation,timeToBeCooked,numberPortions,valutation,difficulty,category);
     }
     
 }
