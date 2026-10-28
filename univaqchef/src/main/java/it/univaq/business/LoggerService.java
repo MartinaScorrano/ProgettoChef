@@ -63,7 +63,19 @@ public class LoggerService {
         log4jLogger.error(message);
     }
 
+    /**
+     * Se il salvataggio json fallisce, questo metodo permette di stampare
+     * lo stack trace su file grazie a Throwable
+     * 
+     * @param message
+     * @param throwable
+     */
+    public void error(String message, Throwable throwable) {
+        log4jLogger.error(message, throwable);
+    }
+
     public void warn(String message) {
         log4jLogger.warn(message);
     }
+
 }
