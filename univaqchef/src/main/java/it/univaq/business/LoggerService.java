@@ -62,4 +62,8 @@ public class LoggerService {
     public void error(String message) {
         log4jLogger.error(message);
     }
+
+    public void warn(String message) {
+        log4jLogger.warn(message);
+    }
 }
