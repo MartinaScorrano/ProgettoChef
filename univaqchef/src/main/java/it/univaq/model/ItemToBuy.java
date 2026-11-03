@@ -34,5 +34,19 @@ public String toString(){
     measure+"di "+ingredient
     +". L'acquisto al momento risulta "+purchased;
 }
+/**
+ * Metodo getter per l'ingrediente
+ * @return l'ingrediente da acquistare
+ */
+public Ingredient getIngredient(){
+    return ingredient;
+}
+/**
+ * Metodo getter per la quantità da acquistare
+ * @return la quantità da acquistare
+ */
+public double getQuantityToPurchase(){
+    return quantityToPurchase;
+}
 
 }

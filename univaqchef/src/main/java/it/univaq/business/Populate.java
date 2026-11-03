@@ -1,4 +1,7 @@
 package it.univaq.business;
+import java.util.ArrayList;
+import java.util.List;
+
 import it.univaq.model.Allergy;
 import it.univaq.model.Ingredient;
 import it.univaq.model.IngredientCategory;
@@ -50,6 +53,8 @@ public class Populate {
         Ingredient i26=new Ingredient("Acqua",Measurement.LITERS,0.0,IngredientCategory.DRINK);
         Ingredient i27=new Ingredient("Vino bianco",Measurement.MILLILITERS,82.4,IngredientCategory.DRINK);
         i27.allergies.add(Allergy.SOLFITES);
+        List<Ingredient> lista=new ArrayList<>(List.of(i1,i2,i3,i4,i5,i6,i7,i8,i9,i10,i11,i12,i13,i14,i15,i16,i17,i18,i19,i20,i21,i22,i23,i24,i25,i26,i27));
+        ingredientRepo.salva(lista);
 
     }
 

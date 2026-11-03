@@ -1,18 +1,17 @@
 package it.univaq.business;
 
-import it.univaq.model.ShoppingList;
-import it.univaq.model.ItemToBuy;
-import it.univaq.model.WeeklyPlan;
-import it.univaq.model.BaseRecipe;
+import java.time.DayOfWeek;
 import java.util.List;
 import java.util.Map;
-import it.univaq.model.Meal;
-import it.univaq.model.IngredientRecipe;
-import java.util.ArrayList;
-import java.time.DayOfWeek;
 import java.util.TreeMap;
-import it.univaq.model.Ingredient;
+
+import it.univaq.model.BaseRecipe;
+import it.univaq.model.IngredientRecipe;
+import it.univaq.model.ItemToBuy;
+import it.univaq.model.Meal;
 import it.univaq.model.Measurement;
+import it.univaq.model.ShoppingList;
+import it.univaq.model.WeeklyPlan;
 public class ShoppingListService {
     /**
      * Metodo per generare una lista della spesa giornaliera
@@ -71,9 +70,23 @@ public ShoppingList generateShoppingListPerWeek(WeeklyPlan piano){
  * @return la nuova lista modificata
  */
 public ShoppingList ingredientsTogether(ShoppingList lista){
-    List<ItemToBuy> elenco=new ArrayList(lista.getShoppingList());
-    
+    ShoppingList listaModificata=new ShoppingList(lista.getWeeklyPlan());
+    for(ItemToBuy item:lista.getShoppingList()){
+        if(!(listaModificata.getShoppingList().contains(item))){
+            listaModificata.getShoppingList().add(item);
+        }
+        for(ItemToBuy i:listaModificata.getShoppingList()){
+            if(i.getIngredient().equals(item.getIngredient())){
+                i.quantityToPurchase+=item.quantityToPurchase;
+            }
+
+        }
+        
+    }
+    return listaModificata;
+   
+        }
 
 
-}
-}
+    }
+
