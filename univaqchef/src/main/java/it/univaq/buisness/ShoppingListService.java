@@ -34,8 +34,10 @@ public class ShoppingListService {
  * nellon stesso piano settimanale DA COMPLETARE
  * @param piano il piano settimanale
  */
-public Map ingredientTogether(ShoppingList listaNonModificata,WeeklyPlan piano){
-Map<ItemToBuy,Integer> mappa=new TreeMap<>();
+public ShoppingList ingredientTogether(ShoppingList listaNonModificata,WeeklyPlan piano){
+    ShoppingList lista=new ShoppingList(piano);
+    
+
 
 
 }

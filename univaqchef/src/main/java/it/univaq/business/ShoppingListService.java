@@ -7,24 +7,42 @@ import it.univaq.model.BaseRecipe;
 import java.util.List;
 import java.util.Map;
 import it.univaq.model.Meal;
-
+import it.univaq.model.IngredientRecipe;
+import java.util.ArrayList;
+import java.time.DayOfWeek;
+import java.util.TreeMap;
+import it.univaq.model.Ingredient;
+import it.univaq.model.Measurement;
 public class ShoppingListService {
     /**
-     * Da completare!!!!!!!
-     * 
-     * @param piano
-     * @return
+     * Metodo per generare una lista della spesa giornaliera
+     * @param piano il piano settimanale da cui generare la lista 
+     * @return la lista della spesa giornaliera;
      */
-    public ShoppingList generateShoppingList(WeeklyPlan piano) {
+    public ShoppingList generateShoppingListADay(WeeklyPlan piano,DayOfWeek day) {
         ShoppingList shop = new ShoppingList(piano);
-        for (Map<Meal, List<BaseRecipe>> mappa : piano.getPlan().values()) {
-            for (List<BaseRecipe> recipeList : mappa.values()) {
-                for (BaseRecipe br : recipeList) {
-                    shop.getShoppingList().add(br.getListIngredients().keySet());
+        Map<Meal,List<BaseRecipe>> mappa=new TreeMap<>(piano.getPlan().get(day));
+        for(List<BaseRecipe> listaRicette:mappa.values()){
+            for(BaseRecipe b:listaRicette){
+                for(IngredientRecipe ingredient:b.getListIngredients()){
+                    for(Map.Entry<Double,Measurement> entry:ingredient.quantity.entrySet()){
+                        double quantita=entry.getKey();
+                        Measurement misura=entry.getValue();
+                        ItemToBuy item=new ItemToBuy(ingredient,quantita,misura);
+                        shop.getShoppingList().add(item);
+                    }
+
                 }
             }
-
+            
         }
+        return shop;
 
     }
+public ShoppingList ingredientsTogether(ShoppingList lista){
+    List<ItemToBuy> elenco=new ArrayList(lista.getShoppingList());
+    
+
+
+}
 }

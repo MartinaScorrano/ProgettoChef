@@ -2,9 +2,6 @@ package it.univaq.model;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeMap;
 
 /**
  * la classe BaseRecipe è una classe astratta utilizzata per indicare una
@@ -12,11 +9,11 @@ import java.util.TreeMap;
  */
 public abstract class BaseRecipe {
     public String title, description;
-    public Map<IngredientRecipe,Map<Integer,Measurement>> list;
+    public List<IngredientRecipe> list;
     public int timePreparation, timeToBeCooked, numberPortions, valutation;
     public Difficulty difficulty;
     public PlateCategory category;
-    private List<PreparationStep> steps;
+    private final List<PreparationStep> steps;
 
     /**
      * Metodo costruttore della classe BaseRecipe
@@ -40,7 +37,7 @@ public abstract class BaseRecipe {
             int timeToBeCooked, int numberPortions, int valutation, Difficulty difficulty, PlateCategory category) {
         this.title = title;
         this.description = description;
-        this.list = new TreeMap<>();
+        this.list = new ArrayList<>();
         this.timePreparation = timePreparation;
         this.timeToBeCooked = timeToBeCooked;
         this.numberPortions = numberPortions;
@@ -100,8 +97,8 @@ public abstract class BaseRecipe {
      * 
      * @return la lista degli ingredienti
      */
-    public Set<IngredientRecipe> getListIngredients() {
-        return list.keySet();
+    public List<IngredientRecipe> getListIngredients() {
+        return list;
     }
 
     /**
@@ -199,7 +196,7 @@ public abstract class BaseRecipe {
      */
     public void getTotalCalories() {
         double count = 0;
-        for (IngredientRecipe ingredient : list.keySet()) {
+        for (IngredientRecipe ingredient : list) {
             count += ingredient.getCalories();
         }
         System.out.println("Questa ricetta contiene un totale di " + count + " kcal");

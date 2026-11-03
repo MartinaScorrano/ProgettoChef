@@ -21,7 +21,7 @@ public class WeeklyPlanRepository extends DataModelSalvabile<WeeklyPlan> {
             return false;
         }
         log("Salvataggio in corso del piano settimanale " + weeklyPlan.getStartDate());
-        String nomeFile = weeklyPlan.getStartDate().toLowerCase().replaceAll("\\s+", "_") + ".json";
+        String nomeFile = weeklyPlan.getStartDate().toString().toLowerCase().replaceAll("\\s+", "_") + ".json";
         File fileOutput = new File(nomeFile);
         try {
             // Scrittura dell'oggetto Java su file JSON tramite Jackson
