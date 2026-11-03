@@ -1,6 +1,5 @@
 package it.univaq.model;
 import java.util.Map;
-import java.util.Set;
 import java.util.TreeMap;
 /**
  * Classe IngredientRecipe utilizzata per modellare l'oggetto ingrediente 
@@ -18,8 +17,8 @@ public class IngredientRecipe extends Ingredient{
      * @param quantity la quantità di ingrediente con l'unità di misura
      */
 public IngredientRecipe(String name,Measurement measure,double calories,
-    IngredientCategory category,Set<Allergy> allergies){
-    super(name,measure,calories,category,allergies);
+    IngredientCategory category){
+    super(name,measure,calories,category);
     this.quantity=new TreeMap<>();
 
 }

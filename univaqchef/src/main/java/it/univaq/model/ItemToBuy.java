@@ -6,7 +6,7 @@ package it.univaq.model;
  */
 public class ItemToBuy {
     public Ingredient ingredient;
-    public int quantityToPurchase;
+    public double quantityToPurchase;
     public Measurement measure;
     public boolean purchased;
 /**
@@ -15,7 +15,7 @@ public class ItemToBuy {
  * @param quantityToPurchase la quantità da acquistare
  * @return una nuova istanza di ItemToBuy
  */
-public ItemToBuy(Ingredient ingredient,int quantityToPurchase,Measurement measure){
+public ItemToBuy(Ingredient ingredient,double quantityToPurchase,Measurement measure){
     this.ingredient=ingredient;
     this.quantityToPurchase=quantityToPurchase;
     this.purchased=false;

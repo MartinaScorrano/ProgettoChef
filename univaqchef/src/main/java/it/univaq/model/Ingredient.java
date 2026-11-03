@@ -1,15 +1,16 @@
 package it.univaq.model;
 import java.util.Set;
+import java.util.TreeSet;
 /**
  * La classe Ingredient viene utilizzata per la creazione di ingredienti 
  * necessari nelle liste della spesa e nelle ricette
  */
 public class Ingredient {
-    private String name;
-    private Measurement measure;
-    private double calories;
-    private IngredientCategory category;
-    private Set<Allergy> allergies;
+    public String name;
+    public Measurement measure;
+    public double calories;
+    public IngredientCategory category;
+    public Set<Allergy> allergies;
 /**
  * Metodo costruttore della classe Ingredient
  * @param name il nome dell'ingrediente
@@ -19,12 +20,12 @@ public class Ingredient {
  * @param allergies un set di allergie legate all'ingrediente
  * @return una nuova istanza di Ingredient
  */
-public Ingredient(String name,Measurement measure,double calories,IngredientCategory category,Set<Allergy> allergies){
+public Ingredient(String name,Measurement measure,double calories,IngredientCategory category){
 this.name=name;
 this.measure=measure;
 this.calories=calories;
 this.category=category;
-this.allergies=allergies;
+this.allergies=new TreeSet<>();
 }
 /**
  * Metodo getter per il nome dell'ingrediente
