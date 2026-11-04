@@ -13,7 +13,7 @@ public abstract class BaseRecipe {
     public int timePreparation, timeToBeCooked, numberPortions, valutation;
     public Difficulty difficulty;
     public PlateCategory category;
-    private final List<PreparationStep> steps;
+    public List<PreparationStep> steps;
 
     /**
      * Metodo costruttore della classe BaseRecipe
