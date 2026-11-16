@@ -2,6 +2,7 @@ package it.univaq.business;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.io.IOException;
 import it.univaq.model.Allergy;
 import it.univaq.model.Ingredient;
 import it.univaq.model.TypeDiet;
@@ -25,11 +26,11 @@ public class UserProfileService {
         if (name == null || name.isBlank() || surname == null || surname.isBlank()) {
             throw new IllegalArgumentException("Nome e cognome non validi");
         }
-        if (people <= 0) {
+        if (numberOfPeople <= 0) {
             throw new IllegalArgumentException("Il numero di persone dev'essere positivo");
         }
 
-         return new UserProfile(name.trim(), lastname.trim(), new ArrayList<>(), new ArrayList<>(), people, new ArrayList<>());
+         return new UserProfile(name.trim(), surname.trim(), new ArrayList<>(), new ArrayList<>(), numberOfPeople, new ArrayList<>());
     }
 
     public void editName(UserProfile profile, String name, String surname) {
@@ -49,7 +50,7 @@ public class UserProfileService {
         if (numberOfPeople <= 0) {
             throw new IllegalArgumentException("Il numero di persone dev'essere positivo.");
         }
-        profile.setNumberOfPeople(people);
+        profile.setNumberOfPeople(numberOfPeople);
     }
 
     public boolean addAllergy(UserProfile profile, Allergy allergy) {
@@ -112,6 +113,17 @@ public class UserProfileService {
         checkProfile(profile);
         return userRepo.salva(profile);
     }
+    
+    /**
+    * Carica il profilo utente salvato.
+    *
+    * @return il profilo oppure null
+    *         se non è ancora stato creato
+    */
+    public UserProfile loadProfile() throws IOException {
+    return userRepo.carica();
+    }
+    
 
     private void checkProfile(UserProfile profile) {
         if (profile == null) {
