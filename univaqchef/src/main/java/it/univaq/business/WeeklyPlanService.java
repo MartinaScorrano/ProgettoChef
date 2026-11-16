@@ -6,7 +6,10 @@ import java.time.DayOfWeek;
  * al piano settimanale
  */
 public class WeeklyPlanService {
-    private final RecipeRepository recipeRepo;
+    private final RecipeRepository recipeRepo; /* Bisogna avere un oggetto recipeRepo
+    per utilizzare il metodo getAllRecipe() di RecipeRepository */
+
+    
     /**
      * Costruttore del servizio.
      * Riceve la repository delle ricette.
