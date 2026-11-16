@@ -201,4 +201,31 @@ public abstract class BaseRecipe {
         }
         System.out.println("Questa ricetta contiene un totale di " + count + " kcal");
     }
+
+// Ingredienti e passi
+
+    /**
+     * Aggiunge un ingrediente; se è già presente somma le quantità
+     *
+     * @param item l'ingrediente con la quantità
+     */
+    public void addIngredient(IngredientRecipe item) {
+        for (IngredientRecipe existing : ingredients) {
+            if (existing.getIngredient().equals(item.getIngredient())) {
+                existing.setQuantity(existing.getQuantity() + item.getQuantity());
+                return;
+            }
+        }
+        ingredients.add(item);
+    }
+
+    /**
+     * @param ingredient l'ingrediente da rimuovere
+     * @return true se era presente
+     */
+    public boolean removeIngredient(Ingredient ingredient) {
+        return ingredients.removeIf(i -> i.getIngredient().equals(ingredient));
+    }
+
+
 }
