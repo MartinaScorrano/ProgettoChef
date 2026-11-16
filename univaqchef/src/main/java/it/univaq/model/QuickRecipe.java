@@ -86,7 +86,6 @@ public class QuickRecipe extends BaseRecipe {
         return lista;
     }
 
-
    /**
      * Suggerisce un ingrediente con cui sostituire uno della ricetta: della
      * stessa categoria e unità di misura, non già presente nella ricetta, che
@@ -110,5 +109,11 @@ public class QuickRecipe extends BaseRecipe {
                 .min(Comparator.comparingDouble(c -> Math.abs(c.getCalories() - ingredient.getCalories())));
     }
 
+    private void maxDuration(int time) throws InvalidRecipeException {
+        if (time > MAX_PREPARATION_TIME) {
+            throw new InvalidRecipeException("Una ricetta veloce richiede al massimo " + MAX_PREPARATION_TIME
+                    + " minuti di preparazione (indicati: " + time + ")");
+        }
+    }
     
 }
