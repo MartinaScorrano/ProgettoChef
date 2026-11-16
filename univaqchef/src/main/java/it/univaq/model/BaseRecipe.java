@@ -215,16 +215,13 @@ public abstract class BaseRecipe {
      /**
      * @return l'insieme degli allergeni di tutti gli ingredienti
      */
-  public Set<Allergy> getAllergens() {
-    return list.stream()
-        .flatMap(item ->
-            item.getIngredient().getAllergies().stream()
-        )
+    public Set<Allergy> getAllergens() {
+        return list.stream()
+        .flatMap(item -> item.getAllergies().stream())
         .collect(Collectors.toCollection(
             () -> EnumSet.noneOf(Allergy.class)
         ));
-}
-
+    }
 
 // Ingredienti e passi
 
@@ -266,11 +263,11 @@ public void addIngredient(IngredientRecipe item) {
      * @param ingredient l'ingrediente da rimuovere
      * @return true se era presente
      */
-   public boolean removeIngredient(Ingredient ingredient) {
-
-    return list.removeIf(item ->
-        item.getIngredient().equals(ingredient)
-    );
+  public boolean removeIngredient(Ingredient ingredient) {
+    if (ingredient == null) {
+        return false;
+    }
+    return list.removeIf(item -> item.equals(ingredient));
 }
 
 
