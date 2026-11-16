@@ -1,5 +1,8 @@
 package it.univaq.model;
 
+import java.util.Set;
+import java.util.EnumSet;
+import java.util.stream.Collectors;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -65,6 +68,11 @@ public abstract class BaseRecipe {
             return false;
         BaseRecipe ricetta = (BaseRecipe) obj;
         return this.title.equals(ricetta.getTitle()) && this.description.equals(ricetta.getDescription());
+    }
+
+    @Override
+    public int hashCode() {
+        return java.util.Objects.hash(title, description);
     }
 
     /**
@@ -207,10 +215,15 @@ public abstract class BaseRecipe {
      /**
      * @return l'insieme degli allergeni di tutti gli ingredienti
      */
-    public Set<Allergy> getAllergens() {
-        return ingredients.stream().flatMap(i -> i.getIngredient().getAllergies().stream())
-                .collect(Collectors.toCollection(() -> EnumSet.noneOf(Allergy.class)));
-    }
+  public Set<Allergy> getAllergens() {
+    return list.stream()
+        .flatMap(item ->
+            item.getIngredient().getAllergies().stream()
+        )
+        .collect(Collectors.toCollection(
+            () -> EnumSet.noneOf(Allergy.class)
+        ));
+}
 
 
 // Ingredienti e passi
@@ -220,23 +233,45 @@ public abstract class BaseRecipe {
      *
      * @param item l'ingrediente con la quantità
      */
-    public void addIngredient(IngredientRecipe item) {
-        for (IngredientRecipe existing : ingredients) {
-            if (existing.getIngredient().equals(item.getIngredient())) {
-                existing.setQuantity(existing.getQuantity() + item.getQuantity());
-                return;
-            }
-        }
-        ingredients.add(item);
+    
+public void addIngredient(IngredientRecipe item) {
+
+    if (item == null) {
+        throw new IllegalArgumentException(
+            "Ingrediente non valido"
+        );
     }
+
+    for (IngredientRecipe existing : list) {
+
+        if (existing.getIngredient()
+                .equals(item.getIngredient())
+                && existing.getMeasurement()
+                == item.getMeasurement()) {
+
+            existing.setQuantity(
+                existing.getQuantity()
+                + item.getQuantity()
+            );
+
+            return;
+        }
+    }
+
+    list.add(item);
+}
+
 
     /**
      * @param ingredient l'ingrediente da rimuovere
      * @return true se era presente
      */
-    public boolean removeIngredient(Ingredient ingredient) {
-        return ingredients.removeIf(i -> i.getIngredient().equals(ingredient));
-    }
+   public boolean removeIngredient(Ingredient ingredient) {
+
+    return list.removeIf(item ->
+        item.getIngredient().equals(ingredient)
+    );
+}
 
 
 }

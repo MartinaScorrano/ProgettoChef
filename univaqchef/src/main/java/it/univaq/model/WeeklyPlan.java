@@ -15,12 +15,22 @@ public class WeeklyPlan  {
     private Set<Allergy> allergies;
 
     public WeeklyPlan(LocalDate startDate) {
-        if (startDate == null) {
-            throw new IllegalArgumentsException("Data di inizio non valida.");
-        }
-        this.startDate = startDate;
-        this.plan = new EnumMap<>(DayOfWeek.class);
-        solEmptyPlan();
+         if (startDate == null) {
+        throw new IllegalArgumentException(
+            "Data di inizio non valida."
+        );
+    }
+
+    if (startDate.getDayOfWeek() != DayOfWeek.MONDAY) {
+        throw new IllegalArgumentException(
+            "Il piano deve iniziare di lunedì."
+        );
+    }
+
+    this.startDate = startDate;
+    this.plan = new EnumMap<>(DayOfWeek.class);
+
+    solEmptyPlan();
     }
 
     private void solEmptyPlan() {
@@ -35,13 +45,6 @@ public class WeeklyPlan  {
 
     public LocalDate getStartDate() {
         return startDate;
-    }
-
-    public void setStartDate(LocalDate startDate) {
-    if (startDate == null) {
-        throw new IllegalArgumentsException("Data di inizio non valida.")
-    }
-    this.startDate = startDate;
     }
 
     public void addRecipe(DayOfWeek day, Meal meal, BaseRecipe recipe) {
