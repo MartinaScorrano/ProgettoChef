@@ -1,12 +1,22 @@
 package it.univaq.model;
-
-public class WeeklyPlan implements Exportable {
-    private LocalDate startDate;
+import java.time.LocalDate;
+import java.util.List;
+import java.util.Map;
+import java.time.DayOfWeek;
+import java.util.Set;
+import java.util.EnumMap;
+import java.util.ArrayList;
+/**
+ * Classe WeeklyPlan utilizzata per la creazione di piani settimanali
+ */
+public class WeeklyPlan  {
+    private final LocalDate startDate;
     private final Map<DayOfWeek, Map<Meal, List<BaseRecipe>>> plan;
+    private Set<Allergy> allergies;
 
     public WeeklyPlan(LocalDate startDate) {
         if (startDate == null) {
-            throw new IllegalArgumentsException("Data di inizio non valida.")
+            throw new IllegalArgumentsException("Data di inizio non valida.");
         }
         this.startDate = startDate;
         this.plan = new EnumMap<>(DayOfWeek.class);

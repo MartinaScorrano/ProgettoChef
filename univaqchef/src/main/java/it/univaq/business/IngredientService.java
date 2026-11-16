@@ -1,4 +1,4 @@
-package it.univaq.buisness;
+package it.univaq.business;
 
 import java.util.List;
 
@@ -53,7 +53,7 @@ public class IngredientService {
      * 
      * @param ingrediente l'ingrediente da aggiungere
      */
-    public void add(Ingredient ingrediente) {
+    public void addIngredient(Ingredient ingrediente) {
         ingredientRepo.addIngredient(ingrediente);
     }
 }

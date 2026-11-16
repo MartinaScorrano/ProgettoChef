@@ -39,45 +39,29 @@ public class QuickRecipe extends BaseRecipe {
      *                             realizzare
      * @param steps                gli step da seguire per la preparazione della
      *                             ricetta
-     * @param rangePreparationTime il range di tempo definito dall'utente per la
-     *                             preparazione del pasto
+     * @param time il tempo che l'utente ha a disposizione per la preparazione del piatto
      * @return una nuova istanza di QuickRecipe
      * @throws InvalidRecipeException se timePreparation supera 30 minuti
      */
-    public QuickRecipe(String title, String description, List<IngredientRecipe> list, int timePreparation,
-            int timeToBeCooked, int numberPortions, int valutation, Difficulty difficulty, PlateCategory category,
-            PreparationStep steps, int rangePreparationTime) {
-        super(title, description, list, timePreparation, timeToBeCooked, numberPortions, valutation, difficulty,
-                category, steps);
-        this.rangePreparationTime = rangePreparationTime;
-
-        if (timePreparation > MAX_PREPARATION_TIME) {
-            throw new InvalidRecipeException(
-                "Una ricetta veloce non può richiedere più di " + MAX_PREPARATION_TIME + " minuti!" 
-            );
+    public QuickRecipe(String title, String description, int timePreparation,
+            int timeToBeCooked, int numberPortions, int valutation, Difficulty difficulty, PlateCategory category,int time) {
+        super(title, description,timePreparation, timeToBeCooked, numberPortions, valutation, difficulty,
+                category);
+                this.time=time;
         }
-    }
-
-    if (timePreparation < 0) {
-        throw new InvalidRecipeException("Tempo di preparazione non valido.");
-    }
-
     /**
-     * Metodo getter per il range temporale
-     * 
-     * @return il range temporale impostato dall'utente
+     * Metodo getter per il tempo a disposizione dell'utente
+     * @return il tempo a disposizione
      */
-    private int getRangePreparationTime() {
-        return this.rangePreparationTime;
+    public int getTime(){
+        return time;
     }
-
     /**
-     * Metodo setter per il range temporale
-     * 
-     * @param range il range temporale impostato dall'utente
+     * Metodo setter del tempo a disposizione dell'utente
+     * @param tempo il tempo a disposizione
      */
-    public void setRangePreparationTime(int range) {
-        this.rangePreparationTime = range;
+    public void setTime(int tempo){
+        this.time=tempo;
     }
 
     /**

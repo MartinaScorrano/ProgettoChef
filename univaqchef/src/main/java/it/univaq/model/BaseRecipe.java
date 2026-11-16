@@ -1,5 +1,6 @@
 package it.univaq.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -12,7 +13,7 @@ public abstract class BaseRecipe {
     public int timePreparation, timeToBeCooked, numberPortions, valutation;
     public Difficulty difficulty;
     public PlateCategory category;
-    private List<PreparationStep> steps;
+    public List<PreparationStep> steps;
 
     /**
      * Metodo costruttore della classe BaseRecipe
@@ -32,29 +33,28 @@ public abstract class BaseRecipe {
      * @param steps           gli step da seguire per la preparazione della ricetta
      * @return una nuova istanza di BaseRecipe
      */
-    public BaseRecipe(String title, String description, List<IngredientRecipe> list, int timePreparation,
-            int timeToBeCooked, int numberPortions, int valutation, Difficulty difficulty, PlateCategory category,
-            PreparationStep steps) {
+    public BaseRecipe(String title, String description, int timePreparation,
+            int timeToBeCooked, int numberPortions, int valutation, Difficulty difficulty, PlateCategory category) {
         this.title = title;
         this.description = description;
-        this.list = list;
+        this.list = new ArrayList<>();
         this.timePreparation = timePreparation;
         this.timeToBeCooked = timeToBeCooked;
         this.numberPortions = numberPortions;
         this.valutation = valutation;
         this.difficulty = difficulty;
         this.category = category;
-        this.steps = (steps != null) ? new ArrayList<>(steps) : new ArrayList<>();
+        this.steps = new ArrayList<>();
     }
 
     @Override
     public String toString() {
-        return "La ricetta: " + getTitle() + " ha la seguente descrizione: " + getDescription()
-                + ".Gli ingredienti necessari alla preparazione sono: " + getListIngredients() +
-                ". Per la preparazione di questa ricetta saranno necessari " + getTimePreparation() + " minuti e "
-                + getTimeToBeCooked() + " minuti per la cottura. Questa ricetta è ottima per " + getNumberPortions()
-                + " persone.Ha una valutazione di " + getValutation() + " stelle su 5. Ha una difficoltà "
-                + getDifficulty() + ".Il piatto appartiene alla categoria " + getCategory();
+        return "La ricetta: " + title + " ha la seguente descrizione: " +  description
+                + ".Gli ingredienti necessari alla preparazione sono: " + list +
+                ". Per la preparazione di questa ricetta saranno necessari " + timePreparation + " minuti e "
+                + timeToBeCooked + " minuti per la cottura. Questa ricetta è ottima per " + numberPortions
+                + " persone.Ha una valutazione di " + valutation + " stelle su 5. Ha una difficoltà "
+                + difficulty + ".Il piatto appartiene alla categoria " + category;
     }
 
     @Override
@@ -64,7 +64,7 @@ public abstract class BaseRecipe {
         if (!(obj instanceof BaseRecipe))
             return false;
         BaseRecipe ricetta = (BaseRecipe) obj;
-        return this.getTitle().equals(ricetta.getTitle()) && this.getDescription().equals(ricetta.getDescription());
+        return this.title.equals(ricetta.getTitle()) && this.description.equals(ricetta.getDescription());
     }
 
     /**
@@ -76,18 +76,16 @@ public abstract class BaseRecipe {
         return title;
     }
 
-    /**
-     * Metodo getter dei passi di preparazione della ricetta;
-     * @return la lista ORDINATA dei passi;
-     */
-
-    public List<PreparationStep> getSteps() {
-        return Collections.unmodifiableList(this.steps);
+/**
+ * Metodo getter per gli step della preparazione
+ * @return la lista degli step di preparazione
+ */
+    public List<PreparationStep> getPreparationSteps() {
+        return steps;
     }
 
     /**
      * Metodo getter per la descrizione
-     * 
      * @return la descrizione della ricetta
      */
     public String getDescription() {
@@ -147,27 +145,6 @@ public abstract class BaseRecipe {
     public Difficulty getDifficulty() {
         return difficulty;
     }
-
-    /**
-     * Aggiunge un passo alla sequenza di preparazione;
-     * @param step il nuovo passo della ricetta;
-     */
-
-    public void addStep(PreparationStep step) {
-        if (step != null) {
-            this.steps.add(step);
-        }
-    }
-
-    /**
-     * Rimuove un passo dalla sequenza;
-     * @param step il passo da rimuovere;
-     */
-
-    public void removeStep(PreparationStep step) {
-        this.steps.remove(step);
-    }
-
     /**
      * Metodo getter per la categoria della ricetta
      * 
@@ -196,7 +173,7 @@ public abstract class BaseRecipe {
     }
 
     /**
-     * Metodo setter per il tempo necessario alla preparazione della ricetta
+     * Metodo setter per il tempo necessario alla preparazione della ricetta.
      * 
      * @param tempoPreparazione il tempo necessario alla preparazione
      */
@@ -216,11 +193,9 @@ public abstract class BaseRecipe {
     /**
      * Metodo che restituisce il conteggio totale della calorie per la ricetta
      * scelta.
-     * 
-     * @return il numero totale di calorie espresso in kcal.
      */
-    public String getTotalCalories() {
-        int count = 0;
+    public void getTotalCalories() {
+        double count = 0;
         for (IngredientRecipe ingredient : list) {
             count += ingredient.getCalories();
         }

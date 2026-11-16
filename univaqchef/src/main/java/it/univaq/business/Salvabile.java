@@ -1,4 +1,4 @@
-package it.univaq.buisness;
+package it.univaq.business;
 
 import it.univaq.exceptions.SaveErrorException;
 
