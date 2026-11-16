@@ -64,4 +64,59 @@ public class UserProfileService {
         }
         return profile.getAllergies().add(allergy);
     }
+
+     public boolean removeAllergy(UserProfile profile, Allergy allergy) {
+        checkProfile(profile);
+        return profile.getAllergies().remove(allergy);
+    }
+
+     public boolean addDiet(UserProfile profile, TypeDiet diet) {
+        checkProfile(profile);
+        if (diet == null) {
+            throw new IllegalArgumentException("Dieta non valida");
+        }
+
+        if (profile.getTypeDiet().contains(diet)) {
+            return false;
+        }
+
+        return profile.getTypeDiet().add(diet);
+    }
+
+    public boolean removeDiet(UserProfile profile, TypeDiet diet) {
+        checkProfile(profile);
+        return profile.getTypeDiet().remove(diet);
+    }
+
+     public boolean addFavoriteIngredient(UserProfile profile, Ingredient ingredient) {
+        checkProfile(profile);
+
+        if (ingredient == null) {
+            throw new IllegalArgumentException("Ingrediente non valido");
+        }
+
+        if (profile.getSweetTreats().contains(ingredient)) {
+            return false;
+        }
+
+        return profile.getSweetTreats().add(ingredient);
+    }
+
+    public boolean removeFavoriteIngredient(UserProfile profile, Ingredient ingredient) {
+
+        checkProfile(profile);
+        return profile.getSweetTreats().remove(ingredient);
+    }
+
+    public boolean saveProfile(UserProfile profile) {
+        checkProfile(profile);
+        return userRepo.salva(profile);
+    }
+
+    private void checkProfile(UserProfile profile) {
+        if (profile == null) {
+            throw new IllegalArgumentException("Profilo utente non valido");
+        }
+    }
+
 }
