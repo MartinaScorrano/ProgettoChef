@@ -43,11 +43,24 @@ public class WeeklyPlanService {
     /**
      * Rimuove una ricetta dal piano settimanale.
      */
-    public boolean removeRecipeFromPlan(WeeklyPlan piano, BaseRecipe recipe, Meal meal, DayOfWeek day) {
+    public boolean removeRecipeFromWeeklyPlan(WeeklyPlan piano, BaseRecipe recipe, Meal meal, DayOfWeek day) {
         if (piano == null || recipe == null || meal == null || day == null) {
             throw new IllegalArgumentException("Parametri non validi");
         }
         return piano.removeRecipe(day, meal, recipe);
+    }
+
+     /**
+     * Restituisce il numero di ricette
+     * assegnate a un determinato pasto.
+     */
+    public int countRecipesPerMeal(WeeklyPlan piano, Meal meal, DayOfWeek day) {
+
+        if (piano == null || meal == null || day == null) {
+            throw new IllegalArgumentException("Parametri non validi");
+        }
+
+        return piano.getRecipes(day, meal).size();
     }
 
 }
