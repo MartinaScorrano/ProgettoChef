@@ -231,25 +231,33 @@ public abstract class BaseRecipe {
      * @param item l'ingrediente con la quantità
      */
     
-public void addIngredient(IngredientRecipe item) {
 
+public void addIngredient(IngredientRecipe item) {
     if (item == null) {
-        throw new IllegalArgumentException(
-            "Ingrediente non valido"
-        );
+        throw new IllegalArgumentException("Ingrediente non valido");
     }
 
     for (IngredientRecipe existing : list) {
+        if (existing.equals(item)
+                && existing.getMeasure() == item.getMeasure()) {
 
-        if (existing.getIngredient()
-                .equals(item.getIngredient())
-                && existing.getMeasurement()
-                == item.getMeasurement()) {
+            for (var entry : item.getQuantity().entrySet()) {
+                double nuovaQuantita = entry.getKey();
+                Measurement unita = entry.getValue();
 
-            existing.setQuantity(
-                existing.getQuantity()
-                + item.getQuantity()
-            );
+                double totale = nuovaQuantita;
+
+                for (var precedente : existing.getQuantity().entrySet()) {
+                    if (precedente.getValue() == unita) {
+                        totale += precedente.getKey();
+                    }
+                }
+
+                existing.getQuantity().entrySet()
+                    .removeIf(e -> e.getValue() == unita);
+
+                existing.getQuantity().put(totale, unita);
+            }
 
             return;
         }
