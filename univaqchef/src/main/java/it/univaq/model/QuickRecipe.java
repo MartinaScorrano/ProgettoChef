@@ -2,11 +2,9 @@ package it.univaq.model;
 
 
 import java.util.Comparator;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import it.univaq.exceptions.ElementNotFoundException;
 import it.univaq.exceptions.InvalidRecipeException;
 
 /**
@@ -18,6 +16,7 @@ import it.univaq.exceptions.InvalidRecipeException;
 public class QuickRecipe extends BaseRecipe {
     public static final int MAX_PREPARATION_TIME = 30;
     
+    
     public int rangePreparationTime;
 
     /**
@@ -25,8 +24,6 @@ public class QuickRecipe extends BaseRecipe {
      * 
      * @param title                il titolo della ricetta
      * @param description          una descrizione della ricetta
-     * @param list                 la lista degli ingredienti necessari alla
-     *                             preparazione
      * @param timePreparation      il tempo da impiegare per la preparazione della
      *                             ricetta
      * @param timeToBeCooked       il tempo necessario per la cottura del cibo
@@ -37,54 +34,35 @@ public class QuickRecipe extends BaseRecipe {
      * @param difficulty           la difficoltà della ricetta
      * @param category             la categoria di appartenenza del piatto da
      *                             realizzare
-     * @param steps                gli step da seguire per la preparazione della
-     *                             ricetta
      * @param time il tempo che l'utente ha a disposizione per la preparazione del piatto
-     * @return una nuova istanza di QuickRecipe
      * @throws InvalidRecipeException se timePreparation supera 30 minuti
      */
     public QuickRecipe(String title, String description, int timePreparation,
             int timeToBeCooked, int numberPortions, int valutation, Difficulty difficulty, PlateCategory category,int time) {
         super(title, description,timePreparation, timeToBeCooked, numberPortions, valutation, difficulty,
                 category);
-                this.time=time;
+                this.rangePreparationTime=time;
+                    maxDuration(timePreparation);
+                    setTime(time);
         }
     /**
      * Metodo getter per il tempo a disposizione dell'utente
      * @return il tempo a disposizione
      */
     public int getTime(){
-        return time;
+        return rangePreparationTime;
     }
     /**
      * Metodo setter del tempo a disposizione dell'utente
      * @param tempo il tempo a disposizione
      */
     public void setTime(int tempo){
-        this.time=tempo;
+        if (tempo <= 0) {
+            throw new IllegalArgumentException("Il tempo dev'essere positivo");
+        }
+        this.rangePreparationTime=tempo;
     }
 
-    /**
-     * Metodo che restituisce l'elenco dei titolo delle ricette che hanno un tempo
-     * di preparazione <= a quello specificato in input
-     * 
-     * @param range il tempo di preparazione impostato dall'utente
-     * @return la lista delle ricette
-     */
-    public ArrayList<String> searchRecipeInRange(int range) throws ElementNotFoundException {
-        ArrayList<String> lista = new ArrayList<>();
-        List<BaseRecipe> ricettario = new ArrayList<>();
-        for (BaseRecipe recipe : ricettario) {
-            if (recipe.getTimePreparation() <= range) {
-                lista.add(recipe.getTitle());
-            }
-        }
-        if (lista.isEmpty()) {
-            throw new ElementNotFoundException();
-
-        }
-        return lista;
-    }
 
    /**
      * Suggerisce un ingrediente con cui sostituire uno della ricetta: della
@@ -110,10 +88,22 @@ public class QuickRecipe extends BaseRecipe {
     }
 
     private void maxDuration(int time) throws InvalidRecipeException {
-        if (time > MAX_PREPARATION_TIME) {
-            throw new InvalidRecipeException("Una ricetta veloce richiede al massimo " + MAX_PREPARATION_TIME
-                    + " minuti di preparazione (indicati: " + time + ")");
+        if (time <= 0 || time > MAX_PREPARATION_TIME) {
+            throw new InvalidRecipeException("Il tempo di preparazione deve essere compreso tra 1 e 30 minuti");
         }
+    }
+
+    private boolean containsIngredient(Ingredient ingredient) {
+        if (ingredient == null) {
+            return false;
+        }
+
+        for (IngredientRecipe item : list) {
+            if (item.getName().equalsIgnoreCase(ingredient.getName())) {
+                return true;
+            }
+        }
+        return false;
     }
     
 }
