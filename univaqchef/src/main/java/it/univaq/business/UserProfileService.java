@@ -21,8 +21,8 @@ public class UserProfileService {
         this.userRepo = userRepo;
     }
 
-    public UserProfile createProfile(String name, String lastname, int people) {
-        if (name == null || name.isBlank() || lastname == null || lastname.isBlank()) {
+    public UserProfile createProfile(String name, String surname, int numberOfPeople) {
+        if (name == null || name.isBlank() || surname == null || surname.isBlank()) {
             throw new IllegalArgumentException("Nome e cognome non validi");
         }
         if (people <= 0) {
@@ -32,24 +32,24 @@ public class UserProfileService {
          return new UserProfile(name.trim(), lastname.trim(), new ArrayList<>(), new ArrayList<>(), people, new ArrayList<>());
     }
 
-    public void editName(UserProfile profile, String name, String lastname) {
+    public void editName(UserProfile profile, String name, String surname) {
         checkProfile(profile);
 
-        if (name == null || name.isBlank() || lastname == null || lastname.isBlank()) {
+        if (name == null || name.isBlank() || surname == null || surname.isBlank()) {
             throw new IllegalArgumentException("Nome e cognome non validi.");
         }
 
         profile.setName(name.trim());
-        profile.setLastName(lastname.trim());
+        profile.setSurname(surname.trim());
     }
 
-    public void changeTotalOfPeople(UserProfile profile, int people) {
+    public void changeTotalOfPeople(UserProfile profile, int numberOfPeople) {
         checkProfile(profile);
 
-        if (people <= 0) {
+        if (numberOfPeople <= 0) {
             throw new IllegalArgumentException("Il numero di persone dev'essere positivo.");
         }
-        profile.setTotalOfPeople(people);
+        profile.setNumberOfPeople(people);
     }
 
     public boolean addAllergy(UserProfile profile, Allergy allergy) {
