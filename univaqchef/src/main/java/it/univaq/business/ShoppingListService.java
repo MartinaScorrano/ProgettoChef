@@ -20,6 +20,11 @@ public class ShoppingListService {
      * @return la lista della spesa giornaliera;
      */
     public ShoppingList generateShoppingListPerDay(WeeklyPlan piano,DayOfWeek day) {
+         if (piano == null || day == null) {
+            throw new IllegalArgumentException(
+                "Piano o giorno non valido");
+        }
+
         ShoppingList shop = new ShoppingList(piano);
         Map<Meal,List<BaseRecipe>> mappa=new TreeMap<>(piano.getPlan().get(day));
         for(List<BaseRecipe> listaRicette:mappa.values()){
@@ -45,6 +50,10 @@ public class ShoppingListService {
  * @return la lista della spesa per l'intera settimana
  */
 public ShoppingList generateShoppingListPerWeek(WeeklyPlan piano){
+     if (piano == null) {
+            throw new IllegalArgumentException(
+                "Piano non valido");
+        }
     ShoppingList shop = new ShoppingList(piano);
         for(Map<Meal,List<BaseRecipe>> mappaRicette:piano.getPlan().values()){
         for(List<BaseRecipe> listaRicette:mappaRicette.values()){
@@ -70,6 +79,11 @@ public ShoppingList generateShoppingListPerWeek(WeeklyPlan piano){
  * @return la nuova lista modificata
  */
 public ShoppingList ingredientsTogether(ShoppingList lista){
+    if (lista == null) {
+            throw new IllegalArgumentException(
+                "Lista non valida");
+    } 
+    
     ShoppingList listaModificata=new ShoppingList(lista.getWeeklyPlan());
     for(ItemToBuy item:lista.getShoppingList()){
         if(!(listaModificata.getShoppingList().contains(item))){
