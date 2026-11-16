@@ -129,7 +129,7 @@ public static void popola(RecipeRepository recipeRepo, IngredientRepository ingr
         Ingredient i63=new Ingredient("Basilico",Measurement.TO_TASTE,23.7,IngredientCategory.SEASONINGS);
         Ingredient i64=new Ingredient("Rosmarino",Measurement.TO_TASTE,131.2,IngredientCategory.SEASONINGS);
         Ingredient i65=new Ingredient("Uova",Measurement.CLOVE,143.0,IngredientCategory.EGGS);
-        i64.allergies.add(Allergy.EGGS);
+        i65.allergies.add(Allergy.EGGS);
         Ingredient i66=new Ingredient("Olio extravergine d'oliva",Measurement.TABLESPOON,884.6,IngredientCategory.OILS_AND_FATS);
         Ingredient i67=new Ingredient("Acqua",Measurement.LITERS,0.0,IngredientCategory.DRINK);
         Ingredient i68=new Ingredient("Vino bianco",Measurement.MILLILITERS,82.4,IngredientCategory.DRINK);
@@ -167,7 +167,7 @@ public static void popola(RecipeRepository recipeRepo, IngredientRepository ingr
         PreparationStep c15=new PreparationStep(1,"Cuoci la pasta in abbondante acqua salata",10);
         PreparationStep c16=new PreparationStep(2,"In un pentolino a parte fai soffriggere della cipolla,metà carota e una foglia di basilico con un filo d'olio:quando sentirai sfrigolare la cipolla aggiungi la passata di pomodoro e lascia cuocere fin quando non avrai ottenuto un gustoso sughetto",15);
         PreparationStep c17=new PreparationStep(3,"Unisci il composto in una padella insieme alla pasta. Poi impiatta con abbondante formaggio e una fogliolina di basilico",1);
-        List<PreparationStep> lista5=new ArrayList<>(List.of(c15,c14,c16));
+        List<PreparationStep> lista5=new ArrayList<>(List.of(c15,c16,c17));
         r5.steps.addAll(lista5);
         BaseRecipe r6=new Recipe("Frittata di zucchine","Saporita frittata cotta in padella con zucchine fresche.",10,10,2,3,Difficulty.MEDIUM,PlateCategory.SECOND_COURSE);
         PreparationStep c18=new PreparationStep(1,"Taglia le zucchine a rondelle sottili e rosolale in padella con un filo d'olio.",7);
