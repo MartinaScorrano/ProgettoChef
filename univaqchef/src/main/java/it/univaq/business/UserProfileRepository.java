@@ -60,7 +60,7 @@ public class UserProfileRepository extends DataModelSalvabile<UserProfile> {
     String surname = root.path("surname").asText();
     int numberOfPeople = root.path("numberOfPeople").asInt();
 
-     List<Allergy> allergies = new ArrayList<>();
+    List<Allergy> allergies = new ArrayList<>();
 
     for (JsonNode node : root.path("allergies")) {
         allergies.add(
@@ -79,13 +79,14 @@ public class UserProfileRepository extends DataModelSalvabile<UserProfile> {
 
     for (JsonNode node : root.path("sweetTreats")) {
         Ingredient ingrediente = new Ingredient(node.path("name").asText(), Measurement.valueOf(node.path("measure").asText()), node.path("calories").asDouble(), IngredientCategory.valueOf(node.path("category").asText()));
-    }
+    
 
     for (JsonNode allergy : node.path("allergies")) {
             ingrediente.allergies.add(Allergy.valueOf(allergy.asText()));
         }
         favorites.add(ingrediente);
     }
+
     
     // Ricostruisce il profilo utente
     return new UserProfile(
@@ -96,4 +97,5 @@ public class UserProfileRepository extends DataModelSalvabile<UserProfile> {
         numberOfPeople,
         favorites
     );
+    }
 }
