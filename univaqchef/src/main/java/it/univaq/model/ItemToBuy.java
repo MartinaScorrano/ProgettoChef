@@ -21,13 +21,15 @@ public ItemToBuy(Ingredient ingredient,double quantityToPurchase,Measurement mea
     this.purchased=false;
     this.measure=measure;
 }
-@Override 
-public boolean equals(Object obj){
-    if(this==obj) return true;
-    if(!(obj instanceof ItemToBuy)) return false;
-    Ingredient ingrediente=(Ingredient) obj;
-    return this.ingredient.getName().equals(ingrediente.getName());
+
+@Override
+public boolean equals(Object obj) {
+    if (this == obj) return true;
+    if (!(obj instanceof ItemToBuy other)) return false;
+
+    return java.util.Objects.equals(this.ingredient, other.ingredient);
 }
+
 @Override 
 public String toString(){
     return "C'è bisogno di acquistare "+quantityToPurchase+ 
