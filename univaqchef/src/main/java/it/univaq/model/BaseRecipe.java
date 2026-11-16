@@ -190,6 +190,8 @@ public abstract class BaseRecipe {
         this.timeToBeCooked = tempoCottura;
     }
 
+    
+
     /**
      * Metodo che restituisce il conteggio totale della calorie per la ricetta
      * scelta.
@@ -201,6 +203,15 @@ public abstract class BaseRecipe {
         }
         System.out.println("Questa ricetta contiene un totale di " + count + " kcal");
     }
+
+     /**
+     * @return l'insieme degli allergeni di tutti gli ingredienti
+     */
+    public Set<Allergy> getAllergens() {
+        return ingredients.stream().flatMap(i -> i.getIngredient().getAllergies().stream())
+                .collect(Collectors.toCollection(() -> EnumSet.noneOf(Allergy.class)));
+    }
+
 
 // Ingredienti e passi
 
