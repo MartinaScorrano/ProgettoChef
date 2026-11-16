@@ -30,8 +30,7 @@ public class UserProfileRepository extends DataModelSalvabile<UserProfile> {
             return false;
         }
         log("Salvataggio in corso del profilo utente di " + userProfile.getName());
-        String nomeFile = userProfile.getName().toLowerCase().replaceAll("\\s+", "_") + ".json";
-        File fileOutput = new File(nomeFile);
+        File fileOutput = new File("profilo_utente.json");
         try {
             // Scrittura dell'oggetto Java su file JSON tramite Jackson
             objectMapper.writeValue(fileOutput, userProfile);
