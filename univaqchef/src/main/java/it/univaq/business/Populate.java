@@ -283,17 +283,17 @@ public static void popola(RecipeRepository recipeRepo, IngredientRepository ingr
         PreparationStep c71=new PreparationStep(3,"Assemblare la parmigiana in una teglia alternando strati di melanzane, salsa, mozzarella filante e abbondante Parmigiano, poi infornare.",40);
         List<PreparationStep> lista25=new ArrayList(List.of(c69,c70,c71));
         r25.steps.addAll(lista25);
-        List<BaseRecipe> ricettario=new ArrayList(List.of(r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11,r12,r13,r14,r15,r16,r17,r18,r19,r20,r21,r22,r23,r24,r25));
-        recipeRepo.salva(ricettario);
+        List<BaseRecipe> ricettario = new ArrayList<>(
+    List.of(r1, r2, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12, r13, r14, r15, r16, r17, r18, r19, r20, r21, r22, r23, r24, r25)
+);
 
+// Inserisce le ricette nella repository in memoria
+for (BaseRecipe ricetta : ricettario) {
+    recipeRepo.addRecipe(ricetta);
+}
 
-
-
-
-
-
-
-
+// Salva le ricette nel file JSON
+recipeRepo.salva(ricettario);
     }
 
 }
