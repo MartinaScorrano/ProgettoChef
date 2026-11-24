@@ -1,6 +1,9 @@
 package it.univaq.business;
-import it.univaq.model.*;
 import java.time.DayOfWeek;
+
+import it.univaq.model.BaseRecipe;
+import it.univaq.model.Meal;
+import it.univaq.model.WeeklyPlan;
 /**
  * Classe WeeklyPlan utilizzata per la gestione di tutti i servizi legati 
  * al piano settimanale

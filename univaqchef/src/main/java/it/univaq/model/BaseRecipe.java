@@ -1,10 +1,10 @@
 package it.univaq.model;
 
-import java.util.Set;
-import java.util.EnumSet;
-import java.util.stream.Collectors;
 import java.util.ArrayList;
+import java.util.EnumSet;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * la classe BaseRecipe è una classe astratta utilizzata per indicare una
@@ -211,6 +211,14 @@ public abstract class BaseRecipe {
         }
         System.out.println("Questa ricetta contiene un totale di " + count + " kcal");
     }
+    public double getCalories(){
+        double count=0;
+        for (IngredientRecipe ingredient : list) {
+            count += ingredient.getCalories();
+        }
+        return count;
+
+    }
 
      /**
      * @return l'insieme degli allergeni di tutti gli ingredienti
@@ -222,8 +230,6 @@ public abstract class BaseRecipe {
             () -> EnumSet.noneOf(Allergy.class)
         ));
     }
-
-// Ingredienti e passi
 
     /**
      * Aggiunge un ingrediente; se è già presente somma le quantità

@@ -1,13 +1,18 @@
 package it.univaq;
+import it.univaq.business.IngredientRepository;
+import it.univaq.business.Populate;
+import it.univaq.business.RecipeRepository;
 
 public class Runner {
 
 	public static void main(String[] args) {
-		Runner x = new Runner();
-		System.out.println(x.somma(4,6));
+		Populate p=new Populate();
+		RecipeRepository rRepo=new RecipeRepository();
+		IngredientRepository iRepo=new IngredientRepository();
+		p.popola(rRepo,iRepo);
+		
+		
 	}
 
-	public int somma(int x, int y) {
-		return x + y;
-	}
+	
 }

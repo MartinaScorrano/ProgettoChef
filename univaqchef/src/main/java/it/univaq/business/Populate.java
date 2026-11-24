@@ -59,7 +59,7 @@ public static void popola(RecipeRepository recipeRepo, IngredientRepository ingr
         i17.allergies.add(Allergy.DAIRY);
         Ingredient i18=new Ingredient("Stracchino",Measurement.GRAMS,240.0,IngredientCategory.DAIRY);
         i18.allergies.add(Allergy.DAIRY);
-        Ingredient i19=new Ingredient("Scuacquerone",Measurement.GRAMS,209.0,IngredientCategory.DAIRY);
+        Ingredient i19=new Ingredient("Squacquerone",Measurement.GRAMS,209.0,IngredientCategory.DAIRY);
         i19.allergies.add(Allergy.DAIRY);
         Ingredient i20=new Ingredient("Yogurt greco",Measurement.GRAMS,97.8,IngredientCategory.DAIRY);
         i20.allergies.add(Allergy.DAIRY);

@@ -25,9 +25,9 @@ public ItemToBuy(Ingredient ingredient,double quantityToPurchase,Measurement mea
 @Override
 public boolean equals(Object obj) {
     if (this == obj) return true;
-    if (!(obj instanceof ItemToBuy other)) return false;
-
-    return java.util.Objects.equals(this.ingredient, other.ingredient);
+    if (!(obj instanceof ItemToBuy)) return false;
+    ItemToBuy item=(ItemToBuy) obj;
+    return this.ingredient.equals(item.getIngredient());
 }
 
 @Override 
