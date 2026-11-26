@@ -13,12 +13,12 @@ import it.univaq.exceptions.InvalidInputException;
  * ricetta base.
  */
 public abstract class BaseRecipe {
-    public String title, description;
-    public List<IngredientRecipe> list;
-    public int timePreparation, timeToBeCooked, numberPortions, valutation;
-    public Difficulty difficulty;
-    public PlateCategory category;
-    public List<PreparationStep> steps;
+    private String title, description;
+    private List<IngredientRecipe> list;
+    private int timePreparation, timeToBeCooked, numberPortions, valutation;
+    private Difficulty difficulty;
+    private PlateCategory category;
+    private List<PreparationStep> steps;
 
     /**
      * Metodo costruttore della classe BaseRecipe
@@ -289,6 +289,19 @@ public abstract class BaseRecipe {
             return false;
         }
         return list.removeIf(item -> item.equals(ingredient));
+    }
+
+    public boolean containsIngredient(Ingredient ingredient) {
+        if (ingredient == null) {
+            return false;
+        }
+
+        for (IngredientRecipe item : list) {
+            if (item.getName().equalsIgnoreCase(ingredient.getName())) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }
