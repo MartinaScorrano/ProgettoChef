@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import it.univaq.business.LoggerService;
 import it.univaq.exceptions.InvalidInputException;
 
 /**
@@ -218,7 +219,7 @@ public abstract class BaseRecipe {
         for (IngredientRecipe ingredient : list) {
             count += ingredient.getCalories();
         }
-        System.out.println("Questa ricetta contiene un totale di " + count + " kcal");
+        LoggerService.getInstance().info("Questa ricetta contiene un totale di " + count + " kcal");
     }
 
     public double getCalories() {
