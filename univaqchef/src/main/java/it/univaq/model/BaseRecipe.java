@@ -241,11 +241,32 @@ public abstract class BaseRecipe {
         this.timeToBeCooked = tempoCottura;
     }
 
+    /**
+     * Metodo che cambia il numero di porzioni e si assicura che il numero in input
+     * sia positivo
+     * 
+     * @param numberPortions
+     * @throws InvalidInputException
+     */
     public void setNumberPortions(int numberPortions) throws InvalidInputException {
         if (numberPortions <= 0) {
             throw new InvalidInputException("Il numero di porzioni deve essere positivo");
         }
         this.numberPortions = numberPortions;
+    }
+
+    /**
+     * Metodo che cambia la valutazione e si assicura che l'input sia compreso tra 1
+     * e 5
+     * 
+     * @param valutation
+     * @throws InvalidInputException
+     */
+    public void setValutation(int valutation) throws InvalidInputException {
+        if (valutation < 1 || valutation >= 5) {
+            throw new InvalidInputException("la valutazione deve essere compresa tra 1 e 5 (inclusi)");
+        }
+        this.valutation = valutation;
     }
 
     /**
