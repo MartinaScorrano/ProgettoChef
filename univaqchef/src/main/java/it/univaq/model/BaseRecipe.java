@@ -192,7 +192,7 @@ public abstract class BaseRecipe {
      */
     public void setTimePreparation(int tempoPreparazione) throws InvalidInputException {
         if (tempoPreparazione <= 0) {
-            throw new InvalidInputException();
+            throw new InvalidInputException("Il tempo di preparazione non puo essere uguale a zero o minore di 0");
         }
         this.timePreparation = tempoPreparazione;
     }
@@ -204,7 +204,7 @@ public abstract class BaseRecipe {
      */
     public void setTimeToBeCooked(int tempoCottura) throws InvalidInputException {
         if (tempoCottura <= 0) {
-            throw new InvalidInputException();
+            throw new InvalidInputException("Il tempo di cottura non puo eseere uguale a zero o minore di 0");
         }
         this.timeToBeCooked = tempoCottura;
     }
