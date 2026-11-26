@@ -202,7 +202,10 @@ public abstract class BaseRecipe {
      * 
      * @param tempoCottura il tempo necessario alla cottura
      */
-    public void setTimeToBeCooked(int tempoCottura) {
+    public void setTimeToBeCooked(int tempoCottura) throws InvalidInputException {
+        if (tempoCottura <= 0) {
+            throw new InvalidInputException();
+        }
         this.timeToBeCooked = tempoCottura;
     }
 
