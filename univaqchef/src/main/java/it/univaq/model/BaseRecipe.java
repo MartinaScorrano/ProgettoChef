@@ -169,6 +169,37 @@ public abstract class BaseRecipe {
     }
 
     /**
+     * Metodo che restituisce il conteggio totale della calorie per la ricetta
+     * scelta.
+     */
+    public void getTotalCalories() {
+        double count = 0;
+        for (IngredientRecipe ingredient : list) {
+            count += ingredient.getCalories();
+        }
+        LoggerService.getInstance().info("Questa ricetta contiene un totale di " + count + " kcal");
+    }
+
+    public double getCalories() {
+        double count = 0;
+        for (IngredientRecipe ingredient : list) {
+            count += ingredient.getCalories();
+        }
+        return count;
+
+    }
+
+    /**
+     * @return l'insieme degli allergeni di tutti gli ingredienti
+     */
+    public Set<Allergy> getAllergens() {
+        return list.stream()
+                .flatMap(item -> item.getAllergies().stream())
+                .collect(Collectors.toCollection(
+                        () -> EnumSet.noneOf(Allergy.class)));
+    }
+
+    /**
      * Metodo setter per il titolo della ricetta
      * 
      * @param titolo per il titolo della ricetta
@@ -208,37 +239,6 @@ public abstract class BaseRecipe {
             throw new InvalidInputException("Il tempo di cottura non puo eseere uguale a zero o minore di 0");
         }
         this.timeToBeCooked = tempoCottura;
-    }
-
-    /**
-     * Metodo che restituisce il conteggio totale della calorie per la ricetta
-     * scelta.
-     */
-    public void getTotalCalories() {
-        double count = 0;
-        for (IngredientRecipe ingredient : list) {
-            count += ingredient.getCalories();
-        }
-        LoggerService.getInstance().info("Questa ricetta contiene un totale di " + count + " kcal");
-    }
-
-    public double getCalories() {
-        double count = 0;
-        for (IngredientRecipe ingredient : list) {
-            count += ingredient.getCalories();
-        }
-        return count;
-
-    }
-
-    /**
-     * @return l'insieme degli allergeni di tutti gli ingredienti
-     */
-    public Set<Allergy> getAllergens() {
-        return list.stream()
-                .flatMap(item -> item.getAllergies().stream())
-                .collect(Collectors.toCollection(
-                        () -> EnumSet.noneOf(Allergy.class)));
     }
 
     /**
@@ -303,6 +303,13 @@ public abstract class BaseRecipe {
             }
         }
         return false;
+    }
+
+    public void addStep(PreparationStep step) {
+        if (step == null) {
+            throw new IllegalArgumentException("Lo step di preparazione non può essere nullo.");
+        }
+        this.steps.add(step);
     }
 
 }
