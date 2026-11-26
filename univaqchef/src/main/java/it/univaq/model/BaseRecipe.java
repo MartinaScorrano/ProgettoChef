@@ -355,7 +355,7 @@ public abstract class BaseRecipe {
      * 
      * @param newSteps
      */
-    public void addSteps(List<PreparationStep> newSteps) {
+    public void addListSteps(List<PreparationStep> newSteps) {
         if (newSteps == null) {
             throw new IllegalArgumentException("La lista di step non può essere vuota");
         }
