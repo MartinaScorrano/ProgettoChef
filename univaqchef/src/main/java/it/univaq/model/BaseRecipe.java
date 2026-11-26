@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import it.univaq.exceptions.InvalidInputException;
+
 /**
  * la classe BaseRecipe è una classe astratta utilizzata per indicare una
  * ricetta base.
@@ -52,7 +54,7 @@ public abstract class BaseRecipe {
 
     @Override
     public String toString() {
-        return "La ricetta: " + title + " ha la seguente descrizione: " +  description
+        return "La ricetta: " + title + " ha la seguente descrizione: " + description
                 + ".Gli ingredienti necessari alla preparazione sono: " + list +
                 ". Per la preparazione di questa ricetta saranno necessari " + timePreparation + " minuti e "
                 + timeToBeCooked + " minuti per la cottura. Questa ricetta è ottima per " + numberPortions
@@ -84,16 +86,18 @@ public abstract class BaseRecipe {
         return title;
     }
 
-/**
- * Metodo getter per gli step della preparazione
- * @return la lista degli step di preparazione
- */
+    /**
+     * Metodo getter per gli step della preparazione
+     * 
+     * @return la lista degli step di preparazione
+     */
     public List<PreparationStep> getPreparationSteps() {
         return steps;
     }
 
     /**
      * Metodo getter per la descrizione
+     * 
      * @return la descrizione della ricetta
      */
     public String getDescription() {
@@ -153,6 +157,7 @@ public abstract class BaseRecipe {
     public Difficulty getDifficulty() {
         return difficulty;
     }
+
     /**
      * Metodo getter per la categoria della ricetta
      * 
@@ -185,7 +190,10 @@ public abstract class BaseRecipe {
      * 
      * @param tempoPreparazione il tempo necessario alla preparazione
      */
-    public void setTimePreparation(int tempoPreparazione) {
+    public void setTimePreparation(int tempoPreparazione) throws InvalidInputException {
+        if (tempoPreparazione <= 0) {
+            throw new InvalidInputException();
+        }
         this.timePreparation = tempoPreparazione;
     }
 
@@ -198,8 +206,6 @@ public abstract class BaseRecipe {
         this.timeToBeCooked = tempoCottura;
     }
 
-    
-
     /**
      * Metodo che restituisce il conteggio totale della calorie per la ricetta
      * scelta.
@@ -211,8 +217,9 @@ public abstract class BaseRecipe {
         }
         System.out.println("Questa ricetta contiene un totale di " + count + " kcal");
     }
-    public double getCalories(){
-        double count=0;
+
+    public double getCalories() {
+        double count = 0;
         for (IngredientRecipe ingredient : list) {
             count += ingredient.getCalories();
         }
@@ -220,15 +227,14 @@ public abstract class BaseRecipe {
 
     }
 
-     /**
+    /**
      * @return l'insieme degli allergeni di tutti gli ingredienti
      */
     public Set<Allergy> getAllergens() {
         return list.stream()
-        .flatMap(item -> item.getAllergies().stream())
-        .collect(Collectors.toCollection(
-            () -> EnumSet.noneOf(Allergy.class)
-        ));
+                .flatMap(item -> item.getAllergies().stream())
+                .collect(Collectors.toCollection(
+                        () -> EnumSet.noneOf(Allergy.class)));
     }
 
     /**
@@ -236,53 +242,50 @@ public abstract class BaseRecipe {
      *
      * @param item l'ingrediente con la quantità
      */
-    
 
-public void addIngredient(IngredientRecipe item) {
-    if (item == null) {
-        throw new IllegalArgumentException("Ingrediente non valido");
-    }
+    public void addIngredient(IngredientRecipe item) {
+        if (item == null) {
+            throw new IllegalArgumentException("Ingrediente non valido");
+        }
 
-    for (IngredientRecipe existing : list) {
-        if (existing.equals(item)
-                && existing.getMeasure() == item.getMeasure()) {
+        for (IngredientRecipe existing : list) {
+            if (existing.equals(item)
+                    && existing.getMeasure() == item.getMeasure()) {
 
-            for (var entry : item.getQuantity().entrySet()) {
-                double nuovaQuantita = entry.getKey();
-                Measurement unita = entry.getValue();
+                for (var entry : item.getQuantity().entrySet()) {
+                    double nuovaQuantita = entry.getKey();
+                    Measurement unita = entry.getValue();
 
-                double totale = nuovaQuantita;
+                    double totale = nuovaQuantita;
 
-                for (var precedente : existing.getQuantity().entrySet()) {
-                    if (precedente.getValue() == unita) {
-                        totale += precedente.getKey();
+                    for (var precedente : existing.getQuantity().entrySet()) {
+                        if (precedente.getValue() == unita) {
+                            totale += precedente.getKey();
+                        }
                     }
+
+                    existing.getQuantity().entrySet()
+                            .removeIf(e -> e.getValue() == unita);
+
+                    existing.getQuantity().put(totale, unita);
                 }
 
-                existing.getQuantity().entrySet()
-                    .removeIf(e -> e.getValue() == unita);
-
-                existing.getQuantity().put(totale, unita);
+                return;
             }
-
-            return;
         }
+
+        list.add(item);
     }
-
-    list.add(item);
-}
-
 
     /**
      * @param ingredient l'ingrediente da rimuovere
      * @return true se era presente
      */
-  public boolean removeIngredient(Ingredient ingredient) {
-    if (ingredient == null) {
-        return false;
+    public boolean removeIngredient(Ingredient ingredient) {
+        if (ingredient == null) {
+            return false;
+        }
+        return list.removeIf(item -> item.equals(ingredient));
     }
-    return list.removeIf(item -> item.equals(ingredient));
-}
-
 
 }
