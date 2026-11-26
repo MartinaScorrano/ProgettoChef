@@ -305,11 +305,23 @@ public abstract class BaseRecipe {
         return false;
     }
 
+    /**
+     * Metodo che aggiunge un passo di preparazione
+     */
     public void addStep(PreparationStep step) {
         if (step == null) {
             throw new IllegalArgumentException("Lo step di preparazione non può essere nullo.");
         }
         this.steps.add(step);
+    }
+
+    public void addSteps(List<PreparationStep> newSteps) {
+        if (newSteps == null) {
+            throw new IllegalArgumentException("La lista di step non può essere vuota");
+        }
+        for (PreparationStep step : newSteps) {
+            addStep(step);
+        }
     }
 
 }
