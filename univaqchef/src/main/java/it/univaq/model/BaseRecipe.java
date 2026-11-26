@@ -241,6 +241,13 @@ public abstract class BaseRecipe {
         this.timeToBeCooked = tempoCottura;
     }
 
+    public void setNumberPortions(int numberPortions) throws InvalidInputException {
+        if (numberPortions <= 0) {
+            throw new InvalidInputException("Il numero di porzioni deve essere positivo");
+        }
+        this.numberPortions = numberPortions;
+    }
+
     /**
      * Aggiunge un ingrediente; se è già presente somma le quantità
      *
