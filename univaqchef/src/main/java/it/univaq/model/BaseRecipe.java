@@ -40,14 +40,19 @@ public abstract class BaseRecipe {
      * @return una nuova istanza di BaseRecipe
      */
     public BaseRecipe(String title, String description, int timePreparation,
-            int timeToBeCooked, int numberPortions, int valutation, Difficulty difficulty, PlateCategory category) {
+            int timeToBeCooked, int numberPortions, int valutation, Difficulty difficulty, PlateCategory category)
+            throws InvalidInputException {
         this.title = title;
         this.description = description;
         this.list = new ArrayList<>();
-        this.timePreparation = timePreparation;
-        this.timeToBeCooked = timeToBeCooked;
-        this.numberPortions = numberPortions;
-        this.valutation = valutation;
+        /**
+         * Il cosruttore usa i metodi setter con i controlli per assicurarsi
+         * che gli input non siano sbagliati sin dal principio
+         */
+        setTimePreparation(timePreparation);
+        setTimeToBeCooked(timeToBeCooked);
+        setNumberPortions(numberPortions);
+        setValutation(valutation);
         this.difficulty = difficulty;
         this.category = category;
         this.steps = new ArrayList<>();
