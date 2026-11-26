@@ -1,5 +1,7 @@
 package it.univaq.model;
 
+import it.univaq.exceptions.InvalidInputException;
+
 /**
  * Classe TraditionaRecipe che individua una ricetta tipica di una determinata
  * tradizione per permettere all'utente non solo di cucinare ma di apprendere
@@ -33,7 +35,8 @@ public class TraditionalRecipe extends BaseRecipe {
      * @return una istanza di TraditionalRecipe
      */
     public TraditionalRecipe(String title, String description, int timePreparation,
-            int timeToBeCooked, int numberPortions, int valutation, Difficulty difficulty, PlateCategory category, Region originRegion, String historyNotes, String suggestedWine) {
+            int timeToBeCooked, int numberPortions, int valutation, Difficulty difficulty, PlateCategory category,
+            Region originRegion, String historyNotes, String suggestedWine) throws InvalidInputException {
         super(title, description, timePreparation, timeToBeCooked, numberPortions, valutation, difficulty,
                 category);
         this.originRegion = originRegion;

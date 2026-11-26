@@ -4,6 +4,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
+import it.univaq.exceptions.InvalidInputException;
 import it.univaq.exceptions.InvalidRecipeException;
 
 /**
@@ -38,7 +39,7 @@ public class QuickRecipe extends BaseRecipe {
      */
     public QuickRecipe(String title, String description, int timePreparation,
             int timeToBeCooked, int numberPortions, int valutation, Difficulty difficulty, PlateCategory category,
-            int time) {
+            int time) throws InvalidInputException {
         super(title, description, timePreparation, timeToBeCooked, numberPortions, valutation, difficulty,
                 category);
         this.rangePreparationTime = time;
