@@ -3,6 +3,7 @@ package it.univaq.business;
 import java.util.ArrayList;
 import java.util.List;
 
+import it.univaq.exceptions.InvalidInputException;
 import it.univaq.model.Allergy;
 import it.univaq.model.BaseRecipe;
 import it.univaq.model.Difficulty;
@@ -32,7 +33,13 @@ public class Populate {
      * @param recipeRepo     la repository per le ricette
      * @param ingredientRepo la repository per gli ingredienti
      */
-    public static void popola(RecipeRepository recipeRepo, IngredientRepository ingredientRepo) {
+    public static void popola(RecipeRepository recipeRepo, IngredientRepository ingredientRepo)
+            /**
+             * Qui non so se è meglio inserire tutto il metodo popola in un try-catch oppure
+             * usare questo throws che
+             * propaga l'eccezione
+             */
+            throws InvalidInputException {
         Ingredient i1 = new Ingredient("Farina", Measurement.GRAMS, 364.0, IngredientCategory.GRAINS_AND_CEREAL);
         i1.allergies.add(Allergy.GLUTEN);
         Ingredient i2 = new Ingredient("Pasta di semola", Measurement.GRAMS, 350.8,
