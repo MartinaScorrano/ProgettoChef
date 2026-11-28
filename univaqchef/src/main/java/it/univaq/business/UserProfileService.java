@@ -1,8 +1,8 @@
 package it.univaq.business;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.io.IOException;
+import java.util.ArrayList;
+
 import it.univaq.model.Allergy;
 import it.univaq.model.Ingredient;
 import it.univaq.model.TypeDiet;
@@ -127,7 +127,7 @@ public class UserProfileService {
 
     private void checkProfile(UserProfile profile) {
         if (profile == null) {
-            throw new IllegalArgumentException("Profilo utente non valido");
+            throw new IllegalArgumentException("Profilo utente non valido:questo profilo non esiste");
         }
     }
 

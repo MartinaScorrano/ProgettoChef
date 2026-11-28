@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="997.0" fitWidth="1785.0" layoutX="-146.0" layoutY="-109.0" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.7;">
+         <image>
+            <Image url="@Gemini_Generated_Image_ysw9koysw9koysw9.jpeg" />
+         </image>
+      </ImageView>
+      <MenuBar prefHeight="28.0" prefWidth="1509.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="Profilo">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Ricettario">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Delete" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="I tuoi piani">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <Label alignment="CENTER" text="Benvenuto nel tuo Ricettario Digitale!." textAlignment="CENTER" textFill="#a41aa0" wrapText="true">
+         <padding>
+            <Insets left="80.0" right="50.0" top="100.0" />
+         </padding>
+         <font>
+            <Font name="DIN Condensed Bold" size="48.0" />
+         </font>
+      </Label>
+      <Label text="Usa il menu in alto per navigare tra le sezioni:" textAlignment="CENTER" textFill="#a41aa0">
+         <font>
+            <Font name="DIN Condensed Bold" size="48.0" />
+         </font>
+         <padding>
+            <Insets left="80.0" top="150.0" />
+         </padding>
+      </Label>
+      <Label text="-Profilo:gestisci e modifica le tue preferenze " textFill="#a41aa0">
+         <font>
+            <Font name="DIN Condensed Bold" size="48.0" />
+         </font>
+         <padding>
+            <Insets left="80.0" top="210.0" />
+         </padding>
+      </Label>
+      <Label text="-Ricettario:cerca,filtra e  visualizza tutte le ricette " textFill="#a41aa0">
+         <font>
+            <Font name="DIN Condensed Bold" size="48.0" />
+         </font>
+         <padding>
+            <Insets left="80.0" top="260.0" />
+         </padding>
+      </Label>
+      <Label text="-I tuoi piani:gestisci e organizza i pasti della settimana " textFill="#a41aa0">
+         <font>
+            <Font name="DIN Condensed Bold" size="48.0" />
+         </font>
+         <padding>
+            <Insets left="80.0" top="310.0" />
+         </padding>
+      </Label>
+   </children>
+</AnchorPane>
